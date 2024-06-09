@@ -7,23 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */; };
+		22A8864C2C0A7B9F004A60B1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */; };
 		22B444672C084FE100085AFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444662C084FE100085AFA /* AppDelegate.swift */; };
 		22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444682C084FE100085AFA /* SceneDelegate.swift */; };
-		22B4446B2C084FE100085AFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4446A2C084FE100085AFA /* ViewController.swift */; };
-		22B4446E2C084FE100085AFA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 22B4446D2C084FE100085AFA /* Base */; };
+		22B4446B2C084FE100085AFA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4446A2C084FE100085AFA /* MainViewController.swift */; };
 		22B444702C084FE200085AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B4446F2C084FE200085AFA /* Assets.xcassets */; };
 		22B444732C084FE200085AFA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 22B444722C084FE200085AFA /* Base */; };
+		22B444822C08580100085AFA /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444812C08580100085AFA /* UIView+Constraints.swift */; };
+		22B444842C08583100085AFA /* UIViewController+KeyboardHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444832C08583100085AFA /* UIViewController+KeyboardHandling.swift */; };
+		22B444862C08585A00085AFA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444852C08585A00085AFA /* UIColor+Extension.swift */; };
+		22B444882C0858A900085AFA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444872C0858A900085AFA /* AppConstants.swift */; };
+		22B4448B2C085F5C00085AFA /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B4448A2C085F5C00085AFA /* Lato-Semibold.ttf */; };
+		22B4448D2C085F6A00085AFA /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */; };
+		22B444912C085F9000085AFA /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444902C085F9000085AFA /* Lato-Regular.ttf */; };
+		22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444922C085FAF00085AFA /* Lato-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		22B444632C084FE100085AFA /* Catch'em all.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch'em all.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B444662C084FE100085AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22B444682C084FE100085AFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		22B4446A2C084FE100085AFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		22B4446D2C084FE100085AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		22B4446A2C084FE100085AFA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		22B4446F2C084FE200085AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22B444722C084FE200085AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22B444742C084FE200085AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22B444812C08580100085AFA /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		22B444832C08583100085AFA /* UIViewController+KeyboardHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardHandling.swift"; sourceTree = "<group>"; };
+		22B444852C08585A00085AFA /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		22B444872C0858A900085AFA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		22B4448A2C085F5C00085AFA /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
+		22B444902C085F9000085AFA /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../../../../Fonts/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		22B444922C085FAF00085AFA /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,88 @@
 		22B444652C084FE100085AFA /* Catch'em all */ = {
 			isa = PBXGroup;
 			children = (
-				22B444662C084FE100085AFA /* AppDelegate.swift */,
-				22B444682C084FE100085AFA /* SceneDelegate.swift */,
-				22B4446A2C084FE100085AFA /* ViewController.swift */,
-				22B4446C2C084FE100085AFA /* Main.storyboard */,
-				22B4446F2C084FE200085AFA /* Assets.xcassets */,
-				22B444712C084FE200085AFA /* LaunchScreen.storyboard */,
 				22B444742C084FE200085AFA /* Info.plist */,
+				22B444712C084FE200085AFA /* LaunchScreen.storyboard */,
+				22B4447D2C08571100085AFA /* Application */,
+				22B4447B2C0856EC00085AFA /* Utilities */,
+				22B4447C2C0856FE00085AFA /* Extensions */,
+				22B4447A2C0856CF00085AFA /* Resources */,
+				22B444802C08578500085AFA /* Models */,
+				22B4447E2C08573600085AFA /* Views */,
+				22B4447F2C08577600085AFA /* ViewModels */,
 			);
 			path = "Catch'em all";
+			sourceTree = "<group>";
+		};
+		22B4447A2C0856CF00085AFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22B4446F2C084FE200085AFA /* Assets.xcassets */,
+				22B444892C0858E200085AFA /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		22B4447B2C0856EC00085AFA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				22B444872C0858A900085AFA /* AppConstants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		22B4447C2C0856FE00085AFA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22B444812C08580100085AFA /* UIView+Constraints.swift */,
+				22B444832C08583100085AFA /* UIViewController+KeyboardHandling.swift */,
+				22B444852C08585A00085AFA /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		22B4447D2C08571100085AFA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				22B444662C084FE100085AFA /* AppDelegate.swift */,
+				22B444682C084FE100085AFA /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		22B4447E2C08573600085AFA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22B4446A2C084FE100085AFA /* MainViewController.swift */,
+				22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22B4447F2C08577600085AFA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		22B444802C08578500085AFA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22B444892C0858E200085AFA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */,
+				22B4448A2C085F5C00085AFA /* Lato-Semibold.ttf */,
+				22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */,
+				22B444902C085F9000085AFA /* Lato-Regular.ttf */,
+				22B444922C085FAF00085AFA /* Lato-Light.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +216,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A8864C2C0A7B9F004A60B1 /* Lato-Bold.ttf in Resources */,
 				22B444702C084FE200085AFA /* Assets.xcassets in Resources */,
+				22B444912C085F9000085AFA /* Lato-Regular.ttf in Resources */,
+				22B4448D2C085F6A00085AFA /* Lato-Medium.ttf in Resources */,
+				22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */,
 				22B444732C084FE200085AFA /* Base in Resources */,
-				22B4446E2C084FE100085AFA /* Base in Resources */,
+				22B4448B2C085F5C00085AFA /* Lato-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +233,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22B4446B2C084FE100085AFA /* ViewController.swift in Sources */,
+				22B444842C08583100085AFA /* UIViewController+KeyboardHandling.swift in Sources */,
+				22B4446B2C084FE100085AFA /* MainViewController.swift in Sources */,
 				22B444672C084FE100085AFA /* AppDelegate.swift in Sources */,
+				22B444862C08585A00085AFA /* UIColor+Extension.swift in Sources */,
+				22B444882C0858A900085AFA /* AppConstants.swift in Sources */,
 				22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */,
+				22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */,
+				22B444822C08580100085AFA /* UIView+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		22B4446C2C084FE100085AFA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22B4446D2C084FE100085AFA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		22B444712C084FE200085AFA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,11 +384,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Catch'em all/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,11 +411,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Catch'em all/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

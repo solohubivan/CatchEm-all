@@ -1,0 +1,81 @@
+//
+//  MainViewController.swift
+//  Catch'em all
+//
+//  Created by Ivan Solohub on 30.05.2024.
+//
+
+import UIKit
+
+class MainViewController: UIViewController {
+    
+    private var backgroundImageView = UIImageView()
+    private var mainTitleLabel = UILabel()
+    private var presentPokemonsCollectionView: UICollectionView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
+        view.backgroundColor = .white
+        setupBackgroundImageView()
+        setupMainTitleLabel()
+        setupPresentPokemonsCollectionView()
+    }
+    
+    private func setupBackgroundImageView() {
+        backgroundImageView.image = UIImage(named: "mainVCBackground")
+        backgroundImageView.contentMode = .scaleAspectFit
+        
+        view.addSubview(backgroundImageView)
+        backgroundImageView.addConstraints(to_view: view)
+    }
+    
+    private func setupMainTitleLabel() {
+        mainTitleLabel.text = "Know Them All"
+        mainTitleLabel.font = UIFont(name:"Lato-Bold", size: 24)
+        mainTitleLabel.textColor = UIColor.hex231F20
+        
+        view.addSubview(mainTitleLabel)
+        mainTitleLabel.addConstraints(to_view: view, [
+            .top(anchor: view.topAnchor, constant: 135),
+            .leading(anchor: view.leadingAnchor, constant: 24),
+            .trailing(anchor: view.trailingAnchor, constant: 16),
+            .height(constant: 29)
+        ])
+    }
+
+    private func setupPresentPokemonsCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        presentPokemonsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        presentPokemonsCollectionView.delegate = self
+        presentPokemonsCollectionView.dataSource = self
+
+        presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: "CellId")
+        presentPokemonsCollectionView.overrideUserInterfaceStyle = .light
+        
+        view.addSubview(presentPokemonsCollectionView)
+        presentPokemonsCollectionView.addConstraints(to_view: view, [
+            .top(anchor: mainTitleLabel.bottomAnchor, constant: 20)
+        ])
+    }
+    
+}
+
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as! PresentPokemonsCollectionViewCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: view.frame.width / 2 - 16, height: 150)
+    }
+}
