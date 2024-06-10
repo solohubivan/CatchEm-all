@@ -17,7 +17,37 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
+}
 
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "MainVCCellId", for: indexPath) as! PresentPokemonsCollectionViewCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width / 2 - 28
+        let height = width / 1.4815
+        return CGSize(width: width, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+}
+
+// MARK: - Setup UI
+
+extension MainViewController {
     private func setupUI() {
         view.backgroundColor = .white
         setupBackgroundImageView()
@@ -50,32 +80,19 @@ class MainViewController: UIViewController {
     private func setupPresentPokemonsCollectionView() {
         let layout = UICollectionViewFlowLayout()
         presentPokemonsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         presentPokemonsCollectionView.delegate = self
         presentPokemonsCollectionView.dataSource = self
-
-        presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: "CellId")
+        presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: "MainVCCellId")
+        presentPokemonsCollectionView.layer.masksToBounds = false
+        
         presentPokemonsCollectionView.overrideUserInterfaceStyle = .light
+        presentPokemonsCollectionView.backgroundColor = .clear
         
         view.addSubview(presentPokemonsCollectionView)
         presentPokemonsCollectionView.addConstraints(to_view: view, [
-            .top(anchor: mainTitleLabel.bottomAnchor, constant: 20)
+            .top(anchor: mainTitleLabel.bottomAnchor, constant: 20),
+            .leading(anchor: view.leadingAnchor, constant: 24),
+            .trailing(anchor: view.trailingAnchor, constant: 24)
         ])
-    }
-    
-}
-
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as! PresentPokemonsCollectionViewCell
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: view.frame.width / 2 - 16, height: 150)
     }
 }
