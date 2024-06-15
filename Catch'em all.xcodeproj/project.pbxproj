@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */; };
+		222EC0B72C17898500804A99 /* DetailedHerosInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EC0B62C17898500804A99 /* DetailedHerosInfoVC.swift */; };
 		22A8864C2C0A7B9F004A60B1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */; };
 		22B444672C084FE100085AFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444662C084FE100085AFA /* AppDelegate.swift */; };
 		22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444682C084FE100085AFA /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		222EC0B62C17898500804A99 /* DetailedHerosInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedHerosInfoVC.swift; sourceTree = "<group>"; };
 		22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		22B444632C084FE100085AFA /* Catch'em all.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch'em all.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B444662C084FE100085AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2262A65C2C1DF298008BFAF3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		22B4445A2C084FE100085AFA = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +83,7 @@
 		22B444652C084FE100085AFA /* Catch'em all */ = {
 			isa = PBXGroup;
 			children = (
+				2262A65C2C1DF298008BFAF3 /* Network */,
 				22B444742C084FE200085AFA /* Info.plist */,
 				22B444712C084FE200085AFA /* LaunchScreen.storyboard */,
 				22B4447D2C08571100085AFA /* Application */,
@@ -128,6 +138,7 @@
 			children = (
 				22B4446A2C084FE100085AFA /* MainViewController.swift */,
 				22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */,
+				222EC0B62C17898500804A99 /* DetailedHerosInfoVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +250,7 @@
 				22B444862C08585A00085AFA /* UIColor+Extension.swift in Sources */,
 				22B444882C0858A900085AFA /* AppConstants.swift in Sources */,
 				22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */,
+				222EC0B72C17898500804A99 /* DetailedHerosInfoVC.swift in Sources */,
 				22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */,
 				22B444822C08580100085AFA /* UIView+Constraints.swift in Sources */,
 			);
