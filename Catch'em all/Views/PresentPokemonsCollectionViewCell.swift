@@ -13,6 +13,8 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     var herosAbilityLabel = UILabel()
     var herosImageView = UIImageView()
     
+    private var apiDataManager = ApiDataManager()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,7 +42,7 @@ extension PresentPokemonsCollectionViewCell {
     }
     
     private func setupNameLabel() {
-        nameLabel.text = "GORON"
+        nameLabel.text = ""
         nameLabel.textColor = UIColor.hexE40000
         nameLabel.font = UIFont(name: "Lato-Bold", size: 16)
         nameLabel.textAlignment = .left

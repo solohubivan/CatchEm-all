@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */; };
+		220AE2052C1F4FCA00F708F7 /* PokemonsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2042C1F4FCA00F708F7 /* PokemonsDetails.swift */; };
+		220AE2072C1F646300F708F7 /* PreviewCellsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */; };
 		222EC0B72C17898500804A99 /* DetailedHerosInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EC0B62C17898500804A99 /* DetailedHerosInfoVC.swift */; };
+		2262A65F2C1E001F008BFAF3 /* ApiBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262A65E2C1E001F008BFAF3 /* ApiBuilder.swift */; };
+		2262A6612C1E0274008BFAF3 /* ApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262A6602C1E0274008BFAF3 /* ApiDataManager.swift */; };
+		227E82372C1F141B00CC749A /* PokemonApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227E82362C1F141B00CC749A /* PokemonApiResponse.swift */; };
+		227E82392C1F1F7000CC749A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227E82382C1F1F7000CC749A /* NetworkError.swift */; };
 		22A8864C2C0A7B9F004A60B1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */; };
 		22B444672C084FE100085AFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444662C084FE100085AFA /* AppDelegate.swift */; };
 		22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B444682C084FE100085AFA /* SceneDelegate.swift */; };
@@ -27,7 +33,13 @@
 
 /* Begin PBXFileReference section */
 		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		220AE2042C1F4FCA00F708F7 /* PokemonsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsDetails.swift; sourceTree = "<group>"; };
+		220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCellsViewModel.swift; sourceTree = "<group>"; };
 		222EC0B62C17898500804A99 /* DetailedHerosInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedHerosInfoVC.swift; sourceTree = "<group>"; };
+		2262A65E2C1E001F008BFAF3 /* ApiBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBuilder.swift; sourceTree = "<group>"; };
+		2262A6602C1E0274008BFAF3 /* ApiDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDataManager.swift; sourceTree = "<group>"; };
+		227E82362C1F141B00CC749A /* PokemonApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiResponse.swift; sourceTree = "<group>"; };
+		227E82382C1F1F7000CC749A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		22A8864B2C0A7B9F004A60B1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		22B444632C084FE100085AFA /* Catch'em all.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch'em all.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B444662C084FE100085AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +69,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2262A65C2C1DF298008BFAF3 /* Network */ = {
+		2262A65D2C1DFFE5008BFAF3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2262A6602C1E0274008BFAF3 /* ApiDataManager.swift */,
+				227E82382C1F1F7000CC749A /* NetworkError.swift */,
+				2262A65E2C1E001F008BFAF3 /* ApiBuilder.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -83,7 +98,6 @@
 		22B444652C084FE100085AFA /* Catch'em all */ = {
 			isa = PBXGroup;
 			children = (
-				2262A65C2C1DF298008BFAF3 /* Network */,
 				22B444742C084FE200085AFA /* Info.plist */,
 				22B444712C084FE200085AFA /* LaunchScreen.storyboard */,
 				22B4447D2C08571100085AFA /* Application */,
@@ -93,6 +107,7 @@
 				22B444802C08578500085AFA /* Models */,
 				22B4447E2C08573600085AFA /* Views */,
 				22B4447F2C08577600085AFA /* ViewModels */,
+				2262A65D2C1DFFE5008BFAF3 /* Network */,
 			);
 			path = "Catch'em all";
 			sourceTree = "<group>";
@@ -153,6 +168,9 @@
 		22B444802C08578500085AFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				227E82362C1F141B00CC749A /* PokemonApiResponse.swift */,
+				220AE2042C1F4FCA00F708F7 /* PokemonsDetails.swift */,
+				220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,13 +263,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B444842C08583100085AFA /* UIViewController+KeyboardHandling.swift in Sources */,
+				220AE2072C1F646300F708F7 /* PreviewCellsViewModel.swift in Sources */,
+				227E82372C1F141B00CC749A /* PokemonApiResponse.swift in Sources */,
+				2262A6612C1E0274008BFAF3 /* ApiDataManager.swift in Sources */,
 				22B4446B2C084FE100085AFA /* MainViewController.swift in Sources */,
+				220AE2052C1F4FCA00F708F7 /* PokemonsDetails.swift in Sources */,
 				22B444672C084FE100085AFA /* AppDelegate.swift in Sources */,
 				22B444862C08585A00085AFA /* UIColor+Extension.swift in Sources */,
 				22B444882C0858A900085AFA /* AppConstants.swift in Sources */,
 				22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */,
 				222EC0B72C17898500804A99 /* DetailedHerosInfoVC.swift in Sources */,
 				22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */,
+				227E82392C1F1F7000CC749A /* NetworkError.swift in Sources */,
+				2262A65F2C1E001F008BFAF3 /* ApiBuilder.swift in Sources */,
 				22B444822C08580100085AFA /* UIView+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
