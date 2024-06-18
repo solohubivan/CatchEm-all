@@ -29,6 +29,7 @@
 		22B4448D2C085F6A00085AFA /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */; };
 		22B444912C085F9000085AFA /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444902C085F9000085AFA /* Lato-Regular.ttf */; };
 		22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444922C085FAF00085AFA /* Lato-Light.ttf */; };
+		22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2555A2C21E69700D9A6C2 /* CasheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
 		22B444902C085F9000085AFA /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../../../../Fonts/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		22B444922C085FAF00085AFA /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		22C2555A2C21E69700D9A6C2 /* CasheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				2262A6602C1E0274008BFAF3 /* ApiDataManager.swift */,
+				22C2555A2C21E69700D9A6C2 /* CasheManager.swift */,
 				227E82382C1F1F7000CC749A /* NetworkError.swift */,
 				2262A65E2C1E001F008BFAF3 /* ApiBuilder.swift */,
 			);
@@ -274,6 +277,7 @@
 				22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */,
 				222EC0B72C17898500804A99 /* DetailedHerosInfoVC.swift in Sources */,
 				22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */,
+				22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */,
 				227E82392C1F1F7000CC749A /* NetworkError.swift in Sources */,
 				2262A65F2C1E001F008BFAF3 /* ApiBuilder.swift in Sources */,
 				22B444822C08580100085AFA /* UIView+Constraints.swift in Sources */,

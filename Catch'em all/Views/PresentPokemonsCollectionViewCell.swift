@@ -9,27 +9,42 @@ import UIKit
 
 class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     
-    var nameLabel = UILabel()
-    var herosAbilityLabel = UILabel()
-    var herosImageView = UIImageView()
+    private var nameLabel = UILabel()
+    private var herosAbilityLabel = UILabel()
+    private var herosImageView = UIImageView()
     
     private var apiDataManager = ApiDataManager()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = .white
-        self.layer.borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.15).cgColor
-        self.applyShadow(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25))
-        
+        customizeCell()
         setupUI()
+        setupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
     
+    func updateUI(with viewModel: PreviewCellsViewModel) {
+        nameLabel.text = viewModel.name.uppercased()
+        herosAbilityLabel.text = viewModel.abilities.randomElement()
+            
+        if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
+            self.herosImageView.image = cachedImage
+        } else if let imageUrl = URL(string: viewModel.imageURL) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.herosImageView.image = image
+                    }
+                    CacheManager.shared.cacheImage(image, forKey: viewModel.imageURL)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Setup UI
@@ -41,6 +56,12 @@ extension PresentPokemonsCollectionViewCell {
         setupHerosImageView()
     }
     
+    private func customizeCell() {
+        self.backgroundColor = .white
+        self.layer.borderColor = UIColor.cellsBorderColor.cgColor
+        self.applyShadow(color: UIColor.cellsShadowColor)
+    }
+    
     private func setupNameLabel() {
         nameLabel.text = ""
         nameLabel.textColor = UIColor.hexE40000
@@ -48,12 +69,6 @@ extension PresentPokemonsCollectionViewCell {
         nameLabel.textAlignment = .left
         
         self.addSubview(nameLabel)
-        nameLabel.addConstraints(to_view: self, [
-            .top(anchor: self.topAnchor, constant: 32),
-            .leading(anchor: self.leadingAnchor, constant: 9),
-            .trailing(anchor: self.trailingAnchor, constant: 9),
-            .height(constant: 17)
-        ])
     }
     
     private func setupHerosAbilityLabel() {
@@ -63,25 +78,40 @@ extension PresentPokemonsCollectionViewCell {
         herosAbilityLabel.textAlignment = .left
         
         self.addSubview(herosAbilityLabel)
-        herosAbilityLabel.addConstraints(to_view: self, [
-            .top(anchor: nameLabel.bottomAnchor, constant: 5),
-            .leading(anchor: self.leadingAnchor, constant: 9),
-            .width(constant: 74),
-            .height(constant: 13)
-        ])
     }
     
     private func setupHerosImageView() {
-        herosImageView.contentMode = .scaleAspectFill
+        herosImageView.contentMode = .scaleAspectFit
         herosImageView.clipsToBounds = true
-        herosImageView.image = UIImage(named: "mainVCBackground")
         
         self.addSubview(herosImageView)
+    }
+}
+
+// MARK: - Setup Constraints
+
+extension PresentPokemonsCollectionViewCell {
+    private func setupConstraints() {
+        
+        nameLabel.addConstraints(to_view: self, [
+            .top(anchor: self.topAnchor, constant: 32),
+            .leading(anchor: self.leadingAnchor, constant: 9),
+            .trailing(anchor: self.trailingAnchor, constant: 9),
+            .height(constant: 17)
+        ])
+        
+        herosAbilityLabel.addConstraints(to_view: self, [
+            .top(anchor: nameLabel.bottomAnchor, constant: 5),
+            .leading(anchor: self.leadingAnchor, constant: 9),
+            .trailing(anchor: herosImageView.leadingAnchor, constant: 8),
+            .height(constant: 14)
+        ])
+        
         herosImageView.addConstraints(to_view: self, [
-            .top(anchor: self.topAnchor, constant: 16),
-            .leading(anchor: herosAbilityLabel.trailingAnchor, constant: 8),
-            .trailing(anchor: self.trailingAnchor, constant: 8),
-            .bottom(anchor: self.bottomAnchor, constant: 20)
+            .top(anchor: nameLabel.topAnchor, constant: 0),
+            .trailing(anchor: self.trailingAnchor, constant: 0),
+            .width(constant: 90),
+            .bottom(anchor: self.bottomAnchor, constant: 0)
         ])
     }
 }

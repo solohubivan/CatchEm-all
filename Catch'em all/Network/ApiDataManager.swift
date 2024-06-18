@@ -14,7 +14,9 @@ class ApiDataManager {
     var previewCellPokemonDetails: [PreviewCellsViewModel] = []
     
     
-    func fetchAllPokemonDetails(completion: @escaping (Bool) -> Void) {
+    // MARK: - Public Methods
+    
+    func fetchDataForPreviewCell(completion: @escaping (Bool) -> Void) {
         let group = DispatchGroup()
         previewCellPokemonDetails = []
             
@@ -39,7 +41,8 @@ class ApiDataManager {
         return availablePokemons.count
     }
     
-    func getPokemonGeneralInfoApiData(request: String, completion: @escaping (Result<PokemonApiResponse, NetworkError>) -> Void) {
+    func getPokemonGeneralInfoApiData(completion: @escaping (Result<PokemonApiResponse, NetworkError>) -> Void) {
+        let request = "https://pokeapi.co/api/v2/pokemon"
         
         guard let url = URL(string: request) else {
             completion(.failure(.invalidUrl))
@@ -70,6 +73,13 @@ class ApiDataManager {
     // MARK: - Private Methods
     
     private func getPokemonDetailInfo(for pokemon: Pokemon, completion: @escaping (Result<PreviewCellsViewModel, NetworkError>) -> Void) {
+        let cacheKey = pokemon.name
+            
+        if let cachedModel = CacheManager.shared.getPreviewCellViewModel(forKey: cacheKey) {
+            completion(.success(cachedModel))
+            return
+        }
+            
         guard let url = URL(string: pokemon.url) else {
             completion(.failure(.invalidUrl))
             return
@@ -86,7 +96,8 @@ class ApiDataManager {
                 let abilities = pokemonDetail.abilities.map { $0.ability.name }
                 let imageURL = pokemonDetail.sprites.frontDefault
                 let previewCellViewModel = PreviewCellsViewModel(name: pokemon.name, imageURL: imageURL, abilities: abilities)
-                
+                    
+                CacheManager.shared.cachePreviewCellViewModel(previewCellViewModel, forKey: cacheKey)
                 completion(.success(previewCellViewModel))
             } catch {
                 completion(.failure(.decodingFailed))

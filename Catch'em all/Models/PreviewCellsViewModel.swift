@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PreviewCellsViewModel {
+struct PreviewCellsViewModel: Codable {
     let name: String
     let imageURL: String
     let abilities: [String]

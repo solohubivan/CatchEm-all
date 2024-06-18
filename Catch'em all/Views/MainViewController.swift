@@ -22,25 +22,21 @@ class MainViewController: UIViewController {
     }
     
     private func fetchPokemonData() {
-        apiDataManager.getPokemonGeneralInfoApiData(request: "https://pokeapi.co/api/v2/pokemon") { result in
+        apiDataManager.getPokemonGeneralInfoApiData() { result in
             DispatchQueue.main.async {
                 switch result {
  //               case .success(let response):
                 case .success(_):
-                    self.fetchAllPokemonDetails()
+                    self.apiDataManager.fetchDataForPreviewCell { success in
+                        if success {
+                            self.presentPokemonsCollectionView.reloadData()
+                        } else {
+                            print("Failed to fetch all pokemon details")
+                        }
+                    }
                 case .failure(let error):
                     print("Error fetching data: \(error)")
                 }
-            }
-        }
-    }
-        
-    private func fetchAllPokemonDetails() {
-        apiDataManager.fetchAllPokemonDetails { success in
-            if success {
-                self.presentPokemonsCollectionView.reloadData()
-            } else {
-                print("Failed to fetch all pokemon details")
             }
         }
     }
@@ -58,14 +54,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "MainVCCellId", for: indexPath) as! PresentPokemonsCollectionViewCell
         
         let pokemonDetail = apiDataManager.previewCellPokemonDetails[indexPath.item]
-        cell.nameLabel.text = pokemonDetail.name.uppercased()
-        cell.herosAbilityLabel.text = pokemonDetail.abilities.randomElement()
-        
-//        if let imageUrl = URL(string: pokemonDetail.imageURL) {
-//                    if let data = try? Data(contentsOf: imageUrl) {
-//                        cell.herosImageView.image = UIImage(data: data)
-//                    }
-//                }
+        cell.updateUI(with: pokemonDetail)
         
         return cell
     }
