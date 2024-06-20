@@ -1,5 +1,5 @@
 //
-//  PokemonsDetails.swift
+//  PokemonDetailInfoData.swift
 //  Catch'em all
 //
 //  Created by Ivan Solohub on 16.06.2024.

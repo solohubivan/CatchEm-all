@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     private var presentPokemonsCollectionView: UICollectionView!
     
     private var apiDataManager = ApiDataManager()
+    private var isLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +23,17 @@ class MainViewController: UIViewController {
     }
     
     private func fetchPokemonData() {
-        apiDataManager.getPokemonGeneralInfoApiData() { result in
+        guard !isLoading else { return }
+        isLoading = true
+        
+        apiDataManager.getPokemonApiData { [weak self] result in
             DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.isLoading = false
+                
                 switch result {
- //               case .success(let response):
-                case .success(_):
-                    self.apiDataManager.fetchDataForPreviewCell { success in
-                        if success {
-                            self.presentPokemonsCollectionView.reloadData()
-                        } else {
-                            print("Failed to fetch all pokemon details")
-                        }
-                    }
+                case .success:
+                    self.presentPokemonsCollectionView.reloadData()
                 case .failure(let error):
                     print("Error fetching data: \(error)")
                 }
@@ -41,9 +41,8 @@ class MainViewController: UIViewController {
         }
     }
 }
- 
 
-// MARK: UICollectionView properties
+// MARK: - UICollectionView properties
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,15 +51,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "MainVCCellId", for: indexPath) as! PresentPokemonsCollectionViewCell
-        
-        let pokemonDetail = apiDataManager.previewCellPokemonDetails[indexPath.item]
+
+        let pokemonDetail = apiDataManager.fetchDataForPreviewCells(at: indexPath.item)
         cell.updateUI(with: pokemonDetail)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let vc = DetailedHerosInfoVC()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -78,6 +76,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height - 100 {
+            fetchPokemonData()
+        }
     }
 }
 

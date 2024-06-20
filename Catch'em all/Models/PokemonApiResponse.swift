@@ -8,7 +8,7 @@
 import Foundation
 
 struct PokemonApiResponse: Codable {
-//    let count: Int
+    let count: Int
     let next: String?
     let previous: String?
     let results: [Pokemon]
@@ -17,4 +17,6 @@ struct PokemonApiResponse: Codable {
 struct Pokemon: Codable {
     let name: String
     let url: String
+    var imageURL: String?
+    var abilities: [String]?
 }

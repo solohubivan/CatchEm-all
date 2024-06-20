@@ -30,7 +30,7 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     
     func updateUI(with viewModel: PreviewCellsViewModel) {
         nameLabel.text = viewModel.name.uppercased()
-        herosAbilityLabel.text = viewModel.abilities.randomElement()
+        herosAbilityLabel.text = viewModel.abilities.first
             
         if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
             self.herosImageView.image = cachedImage
@@ -72,7 +72,7 @@ extension PresentPokemonsCollectionViewCell {
     }
     
     private func setupHerosAbilityLabel() {
-        herosAbilityLabel.text = "Super Hearing"
+        herosAbilityLabel.text = ""
         herosAbilityLabel.textColor = UIColor.hex50555C
         herosAbilityLabel.font = UIFont(name: "Lato-Regular", size: 11)
         herosAbilityLabel.textAlignment = .left
