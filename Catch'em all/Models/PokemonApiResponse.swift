@@ -20,3 +20,25 @@ struct Pokemon: Codable {
     var imageURL: String?
     var abilities: [String]?
 }
+
+struct PokemonDetailInfoData: Codable {
+    let abilities: [Ability]
+    let sprites: Sprites
+    
+    struct Ability: Codable {
+        let ability: NamedResource
+    }
+    
+    struct NamedResource: Codable {
+        let name: String
+        let url: String
+    }
+    
+    struct Sprites: Codable {
+        let frontDefault: String
+        
+        enum CodingKeys: String, CodingKey {
+            case frontDefault = "front_default"
+        }
+    }
+}

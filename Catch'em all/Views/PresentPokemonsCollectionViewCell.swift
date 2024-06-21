@@ -13,7 +13,7 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     private var herosAbilityLabel = UILabel()
     private var herosImageView = UIImageView()
     
-    private var apiDataManager = ApiDataManager()
+    private var viewModel: PresentPokemonsCellViewModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,21 +28,13 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func updateUI(with viewModel: PreviewCellsViewModel) {
-        nameLabel.text = viewModel.name.uppercased()
-        herosAbilityLabel.text = viewModel.abilities.first
-            
-        if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
-            self.herosImageView.image = cachedImage
-        } else if let imageUrl = URL(string: viewModel.imageURL) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.herosImageView.image = image
-                    }
-                    CacheManager.shared.cacheImage(image, forKey: viewModel.imageURL)
-                }
-            }
+    func configure(with viewModel: PresentPokemonsCellViewModel) {
+        self.viewModel = viewModel
+        nameLabel.text = viewModel.name
+        herosAbilityLabel.text = viewModel.abilities
+        
+        viewModel.loadImage { [weak self] image in
+            self?.herosImageView.image = image
         }
     }
 }
@@ -63,7 +55,6 @@ extension PresentPokemonsCollectionViewCell {
     }
     
     private func setupNameLabel() {
-        nameLabel.text = ""
         nameLabel.textColor = UIColor.hexE40000
         nameLabel.font = UIFont(name: "Lato-Bold", size: 16)
         nameLabel.textAlignment = .left
@@ -72,7 +63,6 @@ extension PresentPokemonsCollectionViewCell {
     }
     
     private func setupHerosAbilityLabel() {
-        herosAbilityLabel.text = ""
         herosAbilityLabel.textColor = UIColor.hex50555C
         herosAbilityLabel.font = UIFont(name: "Lato-Regular", size: 11)
         herosAbilityLabel.textAlignment = .left

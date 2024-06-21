@@ -6,101 +6,74 @@
 //
 
 import Foundation
+import Combine
 
 class ApiDataManager {
     
     private var availablePokemons: [Pokemon] = []
     private var nextPageURL: String? = "https://pokeapi.co/api/v2/pokemon"
+    private var cancellables = Set<AnyCancellable>()
+    private let cacheManager = CacheManager.shared
     
     // MARK: - Public Methods
     
-    func fetchDataForPreviewCells(at index: Int) -> PreviewCellsViewModel {
-        let pokemon = availablePokemons[index]
-        let imageURL = pokemon.imageURL ?? ""
-        let abilities = pokemon.abilities ?? [""]
-        return PreviewCellsViewModel(name: pokemon.name, imageURL: imageURL, abilities: abilities)
+    func getPreviewCellViewModels() -> [PreviewCellsViewModel] {
+        return availablePokemons.map {
+            PreviewCellsViewModel(name: $0.name, imageURL: $0.imageURL ?? "", abilities: $0.abilities ?? [""])
+        }
     }
     
-    func getAvailablePokemonsCount() -> Int {
-        return availablePokemons.count
-    }
-    
-    func getPokemonApiData(completion: @escaping (Result<Void, NetworkError>) -> Void) {
+    func getPokemonApiData() -> AnyPublisher<Void, NetworkError> {
         guard let request = nextPageURL, let url = URL(string: request) else {
-            completion(.failure(.invalidUrl))
-            return
+            return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let self = self, let data = data, error == nil else {
-                completion(.failure(.requestFailed))
-                return
+        return ApiBuilder.fetchData(from: url)
+            .flatMap { [unowned self] (response: PokemonApiResponse) -> AnyPublisher<Void, NetworkError> in
+                self.availablePokemons.append(contentsOf: response.results)
+                self.nextPageURL = response.next
+                return self.fetchDetailsForAllPokemons()
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                let apiResponse = try decoder.decode(PokemonApiResponse.self, from: data)
-                
-                self.availablePokemons.append(contentsOf: apiResponse.results)
-                self.nextPageURL = apiResponse.next
-                
-                let group = DispatchGroup()
-                for (index, pokemon) in self.availablePokemons.enumerated() {
-                    group.enter()
-                    self.getPokemonDetailInfo(for: pokemon) { result in
-                        switch result {
-                        case .success(let detail):
-                            self.availablePokemons[index].imageURL = detail.imageURL
-                            self.availablePokemons[index].abilities = detail.abilities
-                        case .failure(let error):
-                            print("Failed to fetch details for \(pokemon.name): \(error)")
-                        }
-                        group.leave()
-                    }
-                }
-                group.notify(queue: .main) {
-                    completion(.success(()))
-                }
-            } catch {
-                completion(.failure(.decodingFailed))
-            }
-        }
-        task.resume()
+            .eraseToAnyPublisher()
     }
     
     // MARK: - Private Methods
     
-    private func getPokemonDetailInfo(for pokemon: Pokemon, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
+    private func fetchDetailsForAllPokemons() -> AnyPublisher<Void, NetworkError> {
+        let publishers = availablePokemons.enumerated().map { (index, pokemon) in
+            getPokemonDetailInfo(for: pokemon)
+                .handleEvents(receiveOutput: { [unowned self] detail in
+                    self.availablePokemons[index].imageURL = detail.imageURL
+                    self.availablePokemons[index].abilities = detail.abilities
+                })
+        }
+        return Publishers.MergeMany(publishers)
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+    
+    private func getPokemonDetailInfo(for pokemon: Pokemon) -> AnyPublisher<Pokemon, NetworkError> {
         let cacheKey = pokemon.name
         
-        if let cachedModel = CacheManager.shared.getPokemonsDetailInfoData(forKey: cacheKey) {
-            completion(.success(cachedModel))
-            return
+        if let cachedModel = cacheManager.getPokemonsDetailInfoData(forKey: cacheKey) {
+            return Just(cachedModel)
+                .setFailureType(to: NetworkError.self)
+                .eraseToAnyPublisher()
         }
         
         guard let url = URL(string: pokemon.url) else {
-            completion(.failure(.invalidUrl))
-            return
+            return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(.failure(.requestFailed))
-                return
-            }
-            
-            do {
-                let pokemonDetail = try JSONDecoder().decode(PokemonDetailInfoData.self, from: data)
+        return ApiBuilder.fetchData(from: url)
+            .map { (pokemonDetail: PokemonDetailInfoData) -> Pokemon in
                 let abilities = pokemonDetail.abilities.map { $0.ability.name }
                 let imageURL = pokemonDetail.sprites.frontDefault
-                let pokemonsDetailInfo = Pokemon(name: pokemon.name, url: pokemon.url, imageURL: imageURL, abilities: abilities)
-                
-                CacheManager.shared.cachePokemonsDetailInfoData(pokemonsDetailInfo, forKey: cacheKey)
-                completion(.success(pokemonsDetailInfo))
-            } catch {
-                completion(.failure(.decodingFailed))
+                let detail = Pokemon(name: pokemon.name, url: pokemon.url, imageURL: imageURL, abilities: abilities)
+                self.cacheManager.cachePokemonsDetailInfoData(detail, forKey: cacheKey)
+                return detail
             }
-        }
-        task.resume()
+            .eraseToAnyPublisher()
     }
 }

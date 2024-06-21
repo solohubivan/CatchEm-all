@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class MainViewController: UIViewController {
     
@@ -13,32 +14,36 @@ class MainViewController: UIViewController {
     private var mainTitleLabel = UILabel()
     private var presentPokemonsCollectionView: UICollectionView!
     
-    private var apiDataManager = ApiDataManager()
+    private var viewModel = MainViewModel()
     private var isLoading = false
+    
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupConstraints()
+        bindViewModel()
         fetchPokemonData()
     }
+    
+    // MARK: - Private methods
     
     private func fetchPokemonData() {
         guard !isLoading else { return }
         isLoading = true
         
-        apiDataManager.getPokemonApiData { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.isLoading = false
-                
-                switch result {
-                case .success:
-                    self.presentPokemonsCollectionView.reloadData()
-                case .failure(let error):
-                    print("Error fetching data: \(error)")
-                }
+        viewModel.fetchPokemonData()
+    }
+    
+    private func bindViewModel() {
+        viewModel.$pokemons
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.isLoading = false
+                self?.presentPokemonsCollectionView.reloadData()
             }
-        }
+            .store(in: &cancellables)
     }
 }
 
@@ -46,15 +51,16 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return apiDataManager.getAvailablePokemonsCount()
+        return viewModel.pokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "MainVCCellId", for: indexPath) as! PresentPokemonsCollectionViewCell
-
-        let pokemonDetail = apiDataManager.fetchDataForPreviewCells(at: indexPath.item)
-        cell.updateUI(with: pokemonDetail)
-        
+            
+        let pokemonDetail = viewModel.pokemons[indexPath.item]
+        let cellViewModel = PresentPokemonsCellViewModel(viewModel: pokemonDetail)
+        cell.configure(with: cellViewModel)
+            
         return cell
     }
     
@@ -113,12 +119,6 @@ extension MainViewController {
         mainTitleLabel.textColor = UIColor.hex231F20
         
         view.addSubview(mainTitleLabel)
-        mainTitleLabel.addConstraints(to_view: view, [
-            .top(anchor: view.topAnchor, constant: 135),
-            .leading(anchor: view.leadingAnchor, constant: 24),
-            .trailing(anchor: view.trailingAnchor, constant: 16),
-            .height(constant: 29)
-        ])
     }
 
     private func setupPresentPokemonsCollectionView() {
@@ -133,6 +133,16 @@ extension MainViewController {
         presentPokemonsCollectionView.backgroundColor = .clear
         
         view.addSubview(presentPokemonsCollectionView)
+    }
+    
+    private func setupConstraints() {
+        mainTitleLabel.addConstraints(to_view: view, [
+            .top(anchor: view.topAnchor, constant: 135),
+            .leading(anchor: view.leadingAnchor, constant: 24),
+            .trailing(anchor: view.trailingAnchor, constant: 16),
+            .height(constant: 29)
+        ])
+        
         presentPokemonsCollectionView.addConstraints(to_view: view, [
             .top(anchor: mainTitleLabel.bottomAnchor, constant: 20),
             .leading(anchor: view.leadingAnchor, constant: 24),

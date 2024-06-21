@@ -6,19 +6,26 @@
 //
 
 import Foundation
+import Combine
 
 struct ApiBuilder {
-//    var path: String
+    
+    static func fetchData<T: Decodable>(from url: URL) -> AnyPublisher<T, NetworkError> {
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { data, response in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    throw NetworkError.requestFailed
+                }
+                return data
+            }
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError { error in
+                if error is DecodingError {
+                    return NetworkError.decodingFailed
+                } else {
+                    return NetworkError.requestFailed
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 }
-
-//extension ApiBuilder {
-//    var url: URL {
-//        var components = URLComponents()
-//        components.scheme = "https"
-//        components.host = "pokeapi.co/api/v2"
-//
-//    }
-
-// друга частина 3:39 у відосі про це
-//}
-

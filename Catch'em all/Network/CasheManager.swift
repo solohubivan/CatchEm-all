@@ -16,7 +16,6 @@ class CacheManager {
     
     private init() {}
     
-//    func cachePreviewCellViewModel(_ model: PreviewCellsViewModel, forKey key: String) {
     func cachePokemonsDetailInfoData(_ model: Pokemon, forKey key: String) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(model) {
@@ -27,7 +26,6 @@ class CacheManager {
     func getPokemonsDetailInfoData(forKey key: String) -> Pokemon? {
         if let cachedData = cache.object(forKey: key as NSString) as Data? {
             let decoder = JSONDecoder()
-//            if let model = try? decoder.decode(PreviewCellsViewModel.self, from: cachedData) {
             if let model = try? decoder.decode(Pokemon.self, from: cachedData) {
                 return model
             }
