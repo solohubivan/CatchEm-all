@@ -13,4 +13,5 @@ extension UIColor {
     static let hex50555C = UIColor(red: 0.3137, green: 0.3333, blue: 0.3608, alpha: 1.0)
     static let cellsShadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
     static let cellsBorderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.15)
+    static let hexDADADA = UIColor(red: 0.8549, green: 0.8549, blue: 0.8549, alpha: 1.0)
 }

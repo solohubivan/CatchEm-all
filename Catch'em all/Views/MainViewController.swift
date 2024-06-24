@@ -65,9 +65,13 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailedHerosInfoVC()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        let pokemonDetail = viewModel.pokemons[indexPath.item]
+        let detailVC = DetailInfoPokemonVC()
+        
+        detailVC.detailVCviewModel = pokemonDetail
+        
+        detailVC.modalPresentationStyle = .fullScreen
+        self.present(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
