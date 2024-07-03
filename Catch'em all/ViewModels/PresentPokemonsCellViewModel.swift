@@ -9,10 +9,10 @@ import UIKit
 import Combine
 
 class PresentPokemonsCellViewModel {
-    private var viewModel: PreviewCellsViewModel
+    private var viewModel: PokemonMainInfoDataModel
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: PreviewCellsViewModel) {
+    init(viewModel: PokemonMainInfoDataModel) {
         self.viewModel = viewModel
     }
     

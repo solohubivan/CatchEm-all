@@ -18,8 +18,13 @@ class DetailInfoPokemonVC: UIViewController {
     private var infoModeButtonsUnderscore: [UIView] = []
     private var selectedInfoModeButton: UIButton?
     private var underscoreLineView = UIView()
+    
+    private var aboutContainerView = AboutContainerView()
+    private var statsContainerView = StatsContainerView()
+    private var evolutionContainerView = UIView()
+    private var movesContainerView = UIView()
 
-    var detailVCviewModel: PreviewCellsViewModel?
+    var detailVCviewModel: PokemonMainInfoDataModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +55,35 @@ class DetailInfoPokemonVC: UIViewController {
         infoModeButtonsUnderscore[index].backgroundColor = .red
         
         selectedInfoModeButton = button
+        updateVisibleContainer(for: button)
     }
     
-    private func updateUI(with viewModel: PreviewCellsViewModel) {
-        nameLabel.text = viewModel.name.capitalized
+    private func updateVisibleContainer(for button: UIButton) {
+        aboutContainerView.isHidden = true
+        statsContainerView.isHidden = true
+        evolutionContainerView.isHidden = true
+        movesContainerView.isHidden = true
             
+        switch button.currentTitle {
+        case "About":
+            aboutContainerView.isHidden = false
+            if let viewModel = detailVCviewModel {
+                aboutContainerView.updateAboutContainerView(with: viewModel)
+            }
+        case "Stats":
+            statsContainerView.isHidden = false
+        case "Evolution":
+            evolutionContainerView.isHidden = false
+        case "Moves":
+            movesContainerView.isHidden = false
+        default:
+            break
+        }
+    }
+    
+    private func updateUI(with viewModel: PokemonMainInfoDataModel) {
+        nameLabel.text = viewModel.name.capitalized
+        
         if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
             pokemonImageView.image = cachedImage
         } else if let imageUrl = URL(string: viewModel.imageURL) {
@@ -66,23 +95,6 @@ class DetailInfoPokemonVC: UIViewController {
                     CacheManager.shared.cacheImage(image, forKey: viewModel.imageURL)
                 }
             }
-        }
-    }
-    
-    private func createUnderscoreLines() {
-        underscoreLineView.backgroundColor = UIColor.hexDADADA
-        view.addSubview(underscoreLineView)
- 
-        for button in infoModesButtons {
-            let selfLine = UIView()
-            view.addSubview(selfLine)
-            selfLine.addConstraints(to_view: view, [
-                .top(anchor: pokemonsInfoModeButtonsStackView.bottomAnchor, constant: 0),
-                .height(constant: 1),
-                .leading(anchor: button.leadingAnchor, constant: -10),
-                .trailing(anchor: button.trailingAnchor, constant: -10)
-            ])
-            infoModeButtonsUnderscore.append(selfLine)
         }
     }
     
@@ -104,6 +116,7 @@ extension DetailInfoPokemonVC {
         setupHerosImageView()
         setupPokemonsInfoModeButtonsStackView()
         createUnderscoreLines()
+        setupInfoModesViewContainers()
         
         setupConstraints()
     }
@@ -150,8 +163,34 @@ extension DetailInfoPokemonVC {
             infoModesButtons.append(button)
             pokemonsInfoModeButtonsStackView.addArrangedSubview(button)
         }
-            
         view.addSubview(pokemonsInfoModeButtonsStackView)
+    }
+    
+    private func createUnderscoreLines() {
+        underscoreLineView.backgroundColor = UIColor.hexDADADA
+        view.addSubview(underscoreLineView)
+ 
+        for button in infoModesButtons {
+            let selfLine = UIView()
+            view.addSubview(selfLine)
+            selfLine.addConstraints(to_view: view, [
+                .top(anchor: pokemonsInfoModeButtonsStackView.bottomAnchor, constant: 0),
+                .height(constant: 1),
+                .leading(anchor: button.leadingAnchor, constant: -10),
+                .trailing(anchor: button.trailingAnchor, constant: -10)
+            ])
+            infoModeButtonsUnderscore.append(selfLine)
+        }
+    }
+    
+    private func setupInfoModesViewContainers() {
+        evolutionContainerView.backgroundColor = .blue
+        movesContainerView.backgroundColor = .red
+        
+        view.addSubview(aboutContainerView)
+        view.addSubview(statsContainerView)
+        view.addSubview(evolutionContainerView)
+        view.addSubview(movesContainerView)
     }
     
     private func setupConstraints() {
@@ -187,51 +226,34 @@ extension DetailInfoPokemonVC {
             .trailing(anchor: view.trailingAnchor, constant: 24),
             .height(constant: 1)
         ])
-    }
-    
-    
-
-/*
-    private func setupAboutParametersInfoLabels() {
-        let herosParametersInfo = ["Height", "Weight", "Power", "Attack", "Damage"]
-        var labels = [UILabel]()
         
-        for _ in herosParametersInfo {
-            labels.append(UILabel())
-        }
+        aboutContainerView.addConstraints(to_view: view, [
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
+            .leading(anchor: view.leadingAnchor, constant: 0),
+            .trailing(anchor: view.trailingAnchor, constant: 0),
+            .bottom(anchor: view.bottomAnchor, constant: 0)
+        ])
+            
+        statsContainerView.addConstraints(to_view: view, [
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
+            .leading(anchor: view.leadingAnchor, constant: 0),
+            .trailing(anchor: view.trailingAnchor, constant: 0),
+            .bottom(anchor: view.bottomAnchor, constant: 0)
+        ])
         
-        for (index, parameter) in herosParametersInfo.enumerated() {
-                let label = labels[index]
-            createParametersLabels(labelName: label, parametersText: parameter, textColor: .black)
-                view.addSubview(label)
-        }
+        evolutionContainerView.addConstraints(to_view: view, [
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
+            .leading(anchor: view.leadingAnchor, constant: 0),
+            .trailing(anchor: view.trailingAnchor, constant: 0),
+            .bottom(anchor: view.bottomAnchor, constant: 0)
+        ])
         
-        for (index, label) in labels.enumerated() {
-            if index == 0 {
-                label.addConstraints(to_view: view, [
-                    .top(anchor: herosInfoStackView.bottomAnchor, constant: 24),
-                    .leading(anchor: view.leadingAnchor, constant: 24),
-                    .height(constant: 13)
-                ])
-            } else {
-                label.addConstraints(to_view: view, [
-                    .top(anchor: labels[index - 1].bottomAnchor, constant: 24),
-                    .leading(anchor: view.leadingAnchor, constant: 24),
-                    .height(constant: 13)
-                ])
-            }
-        }
-    }
-    
-    private func setupHerosHeightLabel() {
-        createParametersLabels(labelName: herosHeightLabel, parametersText: "1120 mm", textColor: UIColor.hex50555C)
-        view.addSubview(herosHeightLabel)
-        herosHeightLabel.addConstraints(to_view: view, [
-            .top(anchor: herosInfoStackView.bottomAnchor, constant: 24),
-            .leading(anchor: view.leadingAnchor, constant: 125),
-            .trailing(anchor: view.trailingAnchor, constant: 16),
-            .height(constant: 13)
+        movesContainerView.addConstraints(to_view: view, [
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
+            .leading(anchor: view.leadingAnchor, constant: 0),
+            .trailing(anchor: view.trailingAnchor, constant: 0),
+            .bottom(anchor: view.bottomAnchor, constant: 0)
         ])
     }
-*/
+
 }

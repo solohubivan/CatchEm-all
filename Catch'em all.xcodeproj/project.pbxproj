@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */; };
-		220AE2072C1F646300F708F7 /* PreviewCellsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */; };
+		220AE2072C1F646300F708F7 /* PokemonMainInfoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2062C1F646300F708F7 /* PokemonMainInfoDataModel.swift */; };
 		222356892C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222356882C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift */; };
 		222EC0B72C17898500804A99 /* DetailInfoPokemonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EC0B62C17898500804A99 /* DetailInfoPokemonVC.swift */; };
 		224F9DEA2C2583AC00457597 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224F9DE92C2583AC00457597 /* MainViewModel.swift */; };
@@ -31,12 +31,14 @@
 		22B4448D2C085F6A00085AFA /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */; };
 		22B444912C085F9000085AFA /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444902C085F9000085AFA /* Lato-Regular.ttf */; };
 		22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444922C085FAF00085AFA /* Lato-Light.ttf */; };
+		22BA54C42C2A34EA006D0966 /* AboutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */; };
 		22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2555A2C21E69700D9A6C2 /* CasheManager.swift */; };
+		22E50D142C2FE98700A3488B /* StatsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E50D132C2FE98700A3488B /* StatsContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
-		220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCellsViewModel.swift; sourceTree = "<group>"; };
+		220AE2062C1F646300F708F7 /* PokemonMainInfoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMainInfoDataModel.swift; sourceTree = "<group>"; };
 		222356882C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoPokemonViewModel.swift; sourceTree = "<group>"; };
 		222EC0B62C17898500804A99 /* DetailInfoPokemonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoPokemonVC.swift; sourceTree = "<group>"; };
 		224F9DE92C2583AC00457597 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -61,7 +63,9 @@
 		22B4448C2C085F6A00085AFA /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
 		22B444902C085F9000085AFA /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../../../../Fonts/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		22B444922C085FAF00085AFA /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutContainerView.swift; sourceTree = "<group>"; };
 		22C2555A2C21E69700D9A6C2 /* CasheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasheManager.swift; sourceTree = "<group>"; };
+		22E50D132C2FE98700A3488B /* StatsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				22B4446A2C084FE100085AFA /* MainViewController.swift */,
-				22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */,
 				222EC0B62C17898500804A99 /* DetailInfoPokemonVC.swift */,
+				22BA54C52C2A3D0A006D0966 /* Subviews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				227E82362C1F141B00CC749A /* PokemonApiResponse.swift */,
-				220AE2062C1F646300F708F7 /* PreviewCellsViewModel.swift */,
+				220AE2062C1F646300F708F7 /* PokemonMainInfoDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +198,16 @@
 				22B444922C085FAF00085AFA /* Lato-Light.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		22BA54C52C2A3D0A006D0966 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */,
+				22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */,
+				22E50D132C2FE98700A3488B /* StatsContainerView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E50D142C2FE98700A3488B /* StatsContainerView.swift in Sources */,
 				22B444842C08583100085AFA /* UIViewController+KeyboardHandling.swift in Sources */,
-				220AE2072C1F646300F708F7 /* PreviewCellsViewModel.swift in Sources */,
+				220AE2072C1F646300F708F7 /* PokemonMainInfoDataModel.swift in Sources */,
 				227E82372C1F141B00CC749A /* PokemonApiResponse.swift in Sources */,
+				22BA54C42C2A34EA006D0966 /* AboutContainerView.swift in Sources */,
 				2262A6612C1E0274008BFAF3 /* ApiDataManager.swift in Sources */,
 				22B4446B2C084FE100085AFA /* MainViewController.swift in Sources */,
 				22B444672C084FE100085AFA /* AppDelegate.swift in Sources */,

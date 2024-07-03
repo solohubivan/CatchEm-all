@@ -59,7 +59,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
         let pokemonDetail = viewModel.pokemons[indexPath.item]
         let cellViewModel = PresentPokemonsCellViewModel(viewModel: pokemonDetail)
-        cell.configure(with: cellViewModel)
+        cell.configureCell(with: cellViewModel)
             
         return cell
     }

@@ -10,7 +10,7 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
-    @Published var pokemons: [PreviewCellsViewModel] = []
+    @Published var pokemons: [PokemonMainInfoDataModel] = []
     private var apiDataManager = ApiDataManager()
     private var cancellables = Set<AnyCancellable>()
     
@@ -24,7 +24,10 @@ class MainViewModel: ObservableObject {
                     print("Error fetching data: \(error)")
                 }
             }, receiveValue: { [weak self] in
-                self?.pokemons = self?.apiDataManager.getPreviewCellViewModels() ?? []
+                self?.pokemons = self?.apiDataManager.getPokemonsDetailInfo() ?? []
+                
+                /////////////////////////////////////////////////////////////////////
+                self?.pokemons.forEach { print($0) }
             })
             .store(in: &cancellables)
     }

@@ -7,12 +7,3 @@
 
 import Foundation
 
-class DetailHerosInfoViewModel {
-    var name: String
-    var imageURL: String
-
-    init(name: String, imageURL: String) {
-        self.name = name
-        self.imageURL = imageURL
-    }
-}

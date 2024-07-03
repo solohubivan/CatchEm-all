@@ -28,7 +28,7 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(with viewModel: PresentPokemonsCellViewModel) {
+    func configureCell(with viewModel: PresentPokemonsCellViewModel) {
         self.viewModel = viewModel
         nameLabel.text = viewModel.name
         herosAbilityLabel.text = viewModel.abilities
