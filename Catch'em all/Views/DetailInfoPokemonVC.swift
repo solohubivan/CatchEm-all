@@ -21,8 +21,8 @@ class DetailInfoPokemonVC: UIViewController {
     
     private var aboutContainerView = AboutContainerView()
     private var statsContainerView = StatsContainerView()
-    private var evolutionContainerView = UIView()
-    private var movesContainerView = UIView()
+    private var evolutionContainerView = EvolutionContainerView()
+    private var movesContainerView = MovesContainerView()
 
     var detailVCviewModel: PokemonMainInfoDataModel?
     
@@ -72,10 +72,19 @@ class DetailInfoPokemonVC: UIViewController {
             }
         case "Stats":
             statsContainerView.isHidden = false
+            if let viewModel = detailVCviewModel {
+                statsContainerView.updateStatsContainerView(with: viewModel)
+            }
         case "Evolution":
             evolutionContainerView.isHidden = false
+            if let viewModel = detailVCviewModel {
+                evolutionContainerView.updateEvolutionContainerView(with: viewModel)
+            }
         case "Moves":
             movesContainerView.isHidden = false
+            if let viewModel = detailVCviewModel {
+                movesContainerView.updateMovesInfoTextView(with: viewModel.moves)
+            }
         default:
             break
         }
@@ -184,9 +193,6 @@ extension DetailInfoPokemonVC {
     }
     
     private func setupInfoModesViewContainers() {
-        evolutionContainerView.backgroundColor = .blue
-        movesContainerView.backgroundColor = .red
-        
         view.addSubview(aboutContainerView)
         view.addSubview(statsContainerView)
         view.addSubview(evolutionContainerView)

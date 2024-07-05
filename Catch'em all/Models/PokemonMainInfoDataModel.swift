@@ -16,4 +16,18 @@ struct PokemonMainInfoDataModel: Codable {
     var attack: Int
     var damage: Int
     var description: String
+    
+    var hp: Int
+    var defense: Int
+    var specialAttack: Int
+    var specialDefense: Int
+    var speed: Int
+    
+    var currentEvolution: String
+    var nextEvolutions: [String]
+    var evolutionTrigger: String
+    var minLevel: Int?
+    var evolutionLocation: String?
+    
+    var moves: [String]
 }

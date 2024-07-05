@@ -23,8 +23,21 @@ struct Pokemon: Codable {
     var weight: Int?
     var attack: Int?
     var damage: Int?
-    
     var description: String?
+    
+    var hp: Int?
+    var defense: Int?
+    var specialAttack: Int?
+    var specialDefense: Int?
+    var speed: Int?
+    
+    var currentEvolution: String?
+    var nextEvolutions: [String]?
+    var evolutionTrigger: String?
+    var minLevel: Int?
+    var evolutionLocation: String?
+    
+    var moves: [String]?
 }
 
 struct PokemonDetailInfoData: Codable {
@@ -33,6 +46,7 @@ struct PokemonDetailInfoData: Codable {
     let height: Int
     let weight: Int
     let stats: [Stat]
+    let moves: [Move]
     
     struct Ability: Codable {
         let ability: NamedResource
@@ -62,13 +76,41 @@ struct PokemonDetailInfoData: Codable {
             case stat
         }
     }
+    
+    struct Move: Codable {
+        let move: NamedResource
+    }
 }
 
+//struct PokemonSpeciesResponse: Codable {
+//    let flavorTextEntries: [FlavorTextEntry]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case flavorTextEntries = "flavor_text_entries"
+//    }
+//    
+//    struct FlavorTextEntry: Codable {
+//        let flavorText: String
+//        let language: NamedResource
+//        
+//        enum CodingKeys: String, CodingKey {
+//            case flavorText = "flavor_text"
+//            case language
+//        }
+//    }
+//    
+//    struct NamedResource: Codable {
+//        let name: String
+//        let url: String
+//    }
+//}
 struct PokemonSpeciesResponse: Codable {
     let flavorTextEntries: [FlavorTextEntry]
+    let evolutionChain: EvolutionChain
     
     enum CodingKeys: String, CodingKey {
         case flavorTextEntries = "flavor_text_entries"
+        case evolutionChain = "evolution_chain"
     }
     
     struct FlavorTextEntry: Codable {
@@ -78,6 +120,53 @@ struct PokemonSpeciesResponse: Codable {
         enum CodingKeys: String, CodingKey {
             case flavorText = "flavor_text"
             case language
+        }
+    }
+    
+    struct NamedResource: Codable {
+        let name: String
+        let url: String
+    }
+
+    struct EvolutionChain: Codable {
+        let url: String
+    }
+}
+
+struct PokemonEvolutionChainResponse: Codable {
+    let chain: EvolutionChain
+    
+    struct EvolutionChain: Codable {
+        let species: NamedResource
+        let evolvesTo: [EvolutionStep]
+        
+        enum CodingKeys: String, CodingKey {
+            case species
+            case evolvesTo = "evolves_to"
+        }
+    }
+    
+    struct EvolutionStep: Codable {
+        let species: NamedResource
+        let evolvesTo: [EvolutionStep]
+        let evolutionDetails: [EvolutionDetail]
+        
+        enum CodingKeys: String, CodingKey {
+            case species
+            case evolvesTo = "evolves_to"
+            case evolutionDetails = "evolution_details"
+        }
+    }
+    
+    struct EvolutionDetail: Codable {
+        let trigger: NamedResource
+        let minLevel: Int?
+        let location: NamedResource?
+        
+        enum CodingKeys: String, CodingKey {
+            case trigger
+            case minLevel = "min_level"
+            case location
         }
     }
     

@@ -44,17 +44,17 @@ class StatsContainerView: UIView {
     private func setupStatsParametersLabels() {
         createParametersLabels(labelName: pokemonHPTitleLabel, text: "HP", textColor: .black)
         createParametersLabels(labelName: pokemonAttackTitleLabel, text: "Attack", textColor: .black)
-        createParametersLabels(labelName: pokemonSpecialAttackTitleLabel, text: "SpecAttack", textColor: .black)
+        createParametersLabels(labelName: pokemonSpecialAttackTitleLabel, text: "Special attack", textColor: .black)
         createParametersLabels(labelName: pokemonDefenseTitleLabel, text: "DefenseLabel", textColor: .black)
-        createParametersLabels(labelName: pokemonSpecialDefenseTitleLabel, text: "SpecDefense", textColor: .black)
+        createParametersLabels(labelName: pokemonSpecialDefenseTitleLabel, text: "Special defense", textColor: .black)
         createParametersLabels(labelName: pokemonSpeedTitleLabel, text: "Speed", textColor: .black)
         
-        createParametersLabels(labelName: pokemonHPValueLabel, text: "1", textColor: UIColor.hexDADADA)
-        createParametersLabels(labelName: pokemonAttackValueLabel, text: "1", textColor: UIColor.hexDADADA)
-        createParametersLabels(labelName: pokemonSpecialAttackValueLabel, text: "1", textColor: UIColor.hexDADADA)
-        createParametersLabels(labelName: pokemonDefenseValueLabel, text: "1", textColor: UIColor.hexDADADA)
-        createParametersLabels(labelName: pokemonSpecialDefenseValueLabel, text: "1", textColor: UIColor.hexDADADA)
-        createParametersLabels(labelName: pokemonSpeedValueLabel, text: "1", textColor: UIColor.hexDADADA)
+        createParametersLabels(labelName: pokemonHPValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: pokemonAttackValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: pokemonSpecialAttackValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: pokemonDefenseValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: pokemonSpecialDefenseValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: pokemonSpeedValueLabel, text: "", textColor: .gray)
         
         self.addSubview(pokemonHPTitleLabel)
         self.addSubview(pokemonAttackTitleLabel)
@@ -78,6 +78,17 @@ class StatsContainerView: UIView {
         labelName.textColor = textColor
         labelName.font = UIFont(name: "Lato-Regular", size: 13)
         labelName.textAlignment = .left
+    }
+    
+    // MARK: - Public Method
+    
+    func updateStatsContainerView(with viewModel: PokemonMainInfoDataModel) {
+        pokemonHPValueLabel.text = "\(viewModel.hp)"
+        pokemonAttackValueLabel.text = "\(viewModel.attack)"
+        pokemonDefenseValueLabel.text = "\(viewModel.defense)"
+        pokemonSpecialAttackValueLabel.text = "\(viewModel.specialAttack)"
+        pokemonSpecialDefenseValueLabel.text = "\(viewModel.specialDefense)"
+        pokemonSpeedValueLabel.text = "\(viewModel.speed)"
     }
 }
 
