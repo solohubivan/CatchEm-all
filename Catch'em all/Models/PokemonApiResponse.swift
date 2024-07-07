@@ -31,7 +31,6 @@ struct Pokemon: Codable {
     var specialDefense: Int?
     var speed: Int?
     
-    var currentEvolution: String?
     var nextEvolutions: [String]?
     var evolutionTrigger: String?
     var minLevel: Int?
@@ -82,28 +81,6 @@ struct PokemonDetailInfoData: Codable {
     }
 }
 
-//struct PokemonSpeciesResponse: Codable {
-//    let flavorTextEntries: [FlavorTextEntry]
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case flavorTextEntries = "flavor_text_entries"
-//    }
-//    
-//    struct FlavorTextEntry: Codable {
-//        let flavorText: String
-//        let language: NamedResource
-//        
-//        enum CodingKeys: String, CodingKey {
-//            case flavorText = "flavor_text"
-//            case language
-//        }
-//    }
-//    
-//    struct NamedResource: Codable {
-//        let name: String
-//        let url: String
-//    }
-//}
 struct PokemonSpeciesResponse: Codable {
     let flavorTextEntries: [FlavorTextEntry]
     let evolutionChain: EvolutionChain

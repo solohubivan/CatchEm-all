@@ -6,7 +6,6 @@
 //
 
 struct EvolutionInfo {
-    let currentEvolution: String
     let nextEvolutions: [String]
     let evolutionTrigger: String
     let minLevel: Int?

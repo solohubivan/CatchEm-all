@@ -35,7 +35,6 @@ class ApiDataManager {
                 specialDefense: $0.specialDefense ?? 0,
                 speed: $0.speed ?? 0,
                 
-                currentEvolution: $0.currentEvolution ?? "",
                 nextEvolutions: $0.nextEvolutions ?? [],
                 evolutionTrigger: $0.evolutionTrigger ?? "",
                 minLevel: $0.minLevel,
@@ -79,8 +78,7 @@ class ApiDataManager {
                     self.availablePokemons[index].specialAttack = detail.specialAttack
                     self.availablePokemons[index].specialDefense = detail.specialDefense
                     self.availablePokemons[index].speed = detail.speed
-                    
-                    self.availablePokemons[index].currentEvolution = detail.currentEvolution
+
                     self.availablePokemons[index].nextEvolutions = detail.nextEvolutions
                     self.availablePokemons[index].evolutionTrigger = detail.evolutionTrigger
                     self.availablePokemons[index].minLevel = detail.minLevel
@@ -143,7 +141,6 @@ class ApiDataManager {
                                     specialAttack: specialAttack,
                                     specialDefense: specialDefense,
                                     speed: speed,
-                                    currentEvolution: evolutionInfo.currentEvolution,
                                     nextEvolutions: evolutionInfo.nextEvolutions,
                                     evolutionTrigger: evolutionInfo.evolutionTrigger,
                                     minLevel: evolutionInfo.minLevel,
@@ -181,7 +178,6 @@ class ApiDataManager {
             
         return ApiBuilder.fetchData(from: evolutionChainUrl)
             .map { (evolutionChainResponse: PokemonEvolutionChainResponse) -> EvolutionInfo in
-                let currentEvolution = evolutionChainResponse.chain.species.name
                 let nextEvolutions = self.getNextEvolutions(from: evolutionChainResponse.chain.evolvesTo)
                 let evolutionDetails = evolutionChainResponse.chain.evolvesTo.first?.evolutionDetails.first
                 let evolutionTrigger = evolutionDetails?.trigger.name ?? "N/A"
@@ -189,7 +185,6 @@ class ApiDataManager {
                 let evolutionLocation = evolutionDetails?.location?.name ?? "N/A"
                     
                 return EvolutionInfo(
-                    currentEvolution: currentEvolution,
                     nextEvolutions: nextEvolutions,
                     evolutionTrigger: evolutionTrigger,
                     minLevel: minLevel,

@@ -23,7 +23,6 @@ struct PokemonMainInfoDataModel: Codable {
     var specialDefense: Int
     var speed: Int
     
-    var currentEvolution: String
     var nextEvolutions: [String]
     var evolutionTrigger: String
     var minLevel: Int?

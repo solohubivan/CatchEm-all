@@ -9,13 +9,17 @@ import UIKit
 
 class AboutContainerView: UIView {
 
-    private var heightParameter = UILabel()
-    private var weightParameter = UILabel()
-    private var powerParameter = UILabel()
-    private var attackParameter = UILabel()
-    private var damageParameter = UILabel()
+    private var heightParameterTitleLabel = UILabel()
+    private var weightParameterTitleLabel = UILabel()
+    private var powerParameterTitleLabel = UILabel()
+    private var attackParameterTitleLabel = UILabel()
+    private var attackParameterValueLabel = UILabel()
+    private var damageParameterTitleLabel = UILabel()
+    private var heightParameterValueLabel = UILabel()
+    private var weightParameterValueLabel = UILabel()
+    private var powerParameterValueLabel = UILabel()
+    private var damageParameterValueLabel = UILabel()
     private var generalInfoTextView = UITextView()
-    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,45 +40,27 @@ class AboutContainerView: UIView {
 
     // MARK: - Privat Methods
     
-    private func createParametersLabels(labelName: UILabel) {
-        labelName.text = ""
-        labelName.textColor = .black
+    private func createParametersLabels(labelName: UILabel, text: String, textColor: UIColor) {
+        labelName.text = text
+        labelName.textColor = textColor
         labelName.font = UIFont(name: "Lato-Regular", size: 13)
         labelName.textAlignment = .left
-    }
-    
-    private func createLabelText(title: String, value: String) -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: "\(title):", attributes: [
-            .foregroundColor: UIColor.black,
-            .font: UIFont(name: "Lato-Regular", size: 13)!
-        ])
-            
-        let spacing = "             "
-        
-        let valueText = NSAttributedString(string: "\(spacing)\(value)", attributes: [
-            .foregroundColor: UIColor.gray,
-            .font: UIFont(name: "Lato-Regular", size: 13)!
-        ])
-            
-        attributedText.append(valueText)
-        return attributedText
     }
     
     private func createAttackParameter(value: Int) {
         let attackValue = max(1, min(value / 10, 10))
             
-        let attributedString = NSMutableAttributedString(string: "Attack:                ")
+        let attributedString = NSMutableAttributedString()
             
         for _ in 0..<attackValue {
             let attachment = NSTextAttachment()
             attachment.image = UIImage(named: "fireSpin")
             attachment.bounds = CGRect(x: 0, y: -5, width: 20, height: 20)
-                
             attributedString.append(NSAttributedString(attachment: attachment))
             attributedString.append(NSAttributedString(string: " "))
         }
             
-        attackParameter.attributedText = attributedString
+        attackParameterValueLabel.attributedText = attributedString
     }
 
     // MARK: - Public Methods
@@ -83,14 +69,12 @@ class AboutContainerView: UIView {
         let heightValue = viewModel.height * 100
         let weightValue = viewModel.weight / 10
         let abilitiesText = viewModel.abilities.joined(separator: ", ")
-        heightParameter.attributedText = createLabelText(title: "Height", value: "\(heightValue) mm")
-        weightParameter.attributedText = createLabelText(title: "Weight", value: "\(weightValue) kg")
-        powerParameter.attributedText = createLabelText(title: "Power", value: abilitiesText)
         
+        heightParameterValueLabel.text = "\(heightValue) mm"
+        weightParameterValueLabel.text = "\(weightValue) kg"
+        powerParameterValueLabel.text = "\(abilitiesText)"
         createAttackParameter(value: viewModel.attack)
-        
-        damageParameter.attributedText = createLabelText(title: "Damage", value: "\(viewModel.damage)")
-        
+        damageParameterValueLabel.text = "\(viewModel.damage)"
         generalInfoTextView.text = viewModel.description
     }
 }
@@ -98,16 +82,27 @@ class AboutContainerView: UIView {
 // MARK: - Setup UI
 extension AboutContainerView {
     private func setupPokemonParametersLabels() {
-        createParametersLabels(labelName: heightParameter)
-        createParametersLabels(labelName: weightParameter)
-        createParametersLabels(labelName: powerParameter)
-        createParametersLabels(labelName: attackParameter)
-        createParametersLabels(labelName: damageParameter)
-        self.addSubview(heightParameter)
-        self.addSubview(weightParameter)
-        self.addSubview(powerParameter)
-        self.addSubview(attackParameter)
-        self.addSubview(damageParameter)
+        createParametersLabels(labelName: heightParameterTitleLabel, text: "Height:", textColor: .black)
+        createParametersLabels(labelName: weightParameterTitleLabel, text: "Weight:", textColor: .black)
+        createParametersLabels(labelName: powerParameterTitleLabel, text: "Power:", textColor: .black)
+        createParametersLabels(labelName: attackParameterTitleLabel, text: "Attack:", textColor: .black)
+        createParametersLabels(labelName: damageParameterTitleLabel, text: "Damage:", textColor: .black)
+        
+        createParametersLabels(labelName: heightParameterValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: weightParameterValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: powerParameterValueLabel, text: "", textColor: .gray)
+        createParametersLabels(labelName: damageParameterValueLabel, text: "", textColor: .gray)
+        
+        self.addSubview(heightParameterTitleLabel)
+        self.addSubview(weightParameterTitleLabel)
+        self.addSubview(powerParameterTitleLabel)
+        self.addSubview(attackParameterTitleLabel)
+        self.addSubview(attackParameterValueLabel)
+        self.addSubview(damageParameterTitleLabel)
+        self.addSubview(heightParameterValueLabel)
+        self.addSubview(weightParameterValueLabel)
+        self.addSubview(powerParameterValueLabel)
+        self.addSubview(damageParameterValueLabel)
     }
     
     private func setupGeneralInfoTextView() {
@@ -124,38 +119,70 @@ extension AboutContainerView {
 
 extension AboutContainerView {
     private func setupConstraints() {
-        heightParameter.addConstraints(to_view: self, [
+        heightParameterTitleLabel.addConstraints(to_view: self, [
             .top(anchor: self.topAnchor, constant: 20),
             .height(constant: 15),
             .leading(anchor: self.leadingAnchor, constant: 16),
-            .trailing(anchor: self.trailingAnchor, constant: 16)
+            .trailing(anchor: heightParameterValueLabel.leadingAnchor, constant: 10)
         ])
-        weightParameter.addConstraints(to_view: self, [
-            .top(anchor: heightParameter.bottomAnchor, constant: 20),
+        weightParameterTitleLabel.addConstraints(to_view: self, [
+            .top(anchor: heightParameterTitleLabel.bottomAnchor, constant: 20),
             .height(constant: 15),
             .leading(anchor: self.leadingAnchor, constant: 16),
-            .trailing(anchor: self.trailingAnchor, constant: 16)
+            .trailing(anchor: weightParameterValueLabel.leadingAnchor, constant: 10)
         ])
-        powerParameter.addConstraints(to_view: self, [
-            .top(anchor: weightParameter.bottomAnchor, constant: 20),
+        powerParameterTitleLabel.addConstraints(to_view: self, [
+            .top(anchor: weightParameterTitleLabel.bottomAnchor, constant: 20),
             .height(constant: 15),
             .leading(anchor: self.leadingAnchor, constant: 16),
-            .trailing(anchor: self.trailingAnchor, constant: 16)
+            .trailing(anchor: powerParameterValueLabel.leadingAnchor, constant: 10)
         ])
-        attackParameter.addConstraints(to_view: self, [
-            .top(anchor: powerParameter.bottomAnchor, constant: 40),
+        attackParameterTitleLabel.addConstraints(to_view: self, [
+            .top(anchor: powerParameterTitleLabel.bottomAnchor, constant: 40),
             .height(constant: 15),
             .leading(anchor: self.leadingAnchor, constant: 16),
-            .trailing(anchor: self.trailingAnchor, constant: 16)
+            .trailing(anchor: attackParameterValueLabel.leadingAnchor, constant: 10)
         ])
-        damageParameter.addConstraints(to_view: self, [
-            .top(anchor: attackParameter.bottomAnchor, constant: 20),
+        damageParameterTitleLabel.addConstraints(to_view: self, [
+            .top(anchor: attackParameterTitleLabel.bottomAnchor, constant: 20),
             .height(constant: 15),
             .leading(anchor: self.leadingAnchor, constant: 16),
+            .trailing(anchor: damageParameterValueLabel.leadingAnchor, constant: 16)
+        ])
+        
+        heightParameterValueLabel.addConstraints(to_view: self, [
+            .top(anchor: self.topAnchor, constant: 20),
+            .height(constant: 15),
+            .leading(anchor: self.leadingAnchor, constant: 120),
             .trailing(anchor: self.trailingAnchor, constant: 16)
         ])
+        weightParameterValueLabel.addConstraints(to_view: self, [
+            .top(anchor: heightParameterTitleLabel.bottomAnchor, constant: 20),
+            .height(constant: 15),
+            .leading(anchor: self.leadingAnchor, constant: 120),
+            .trailing(anchor: self.trailingAnchor, constant: 16)
+        ])
+        powerParameterValueLabel.addConstraints(to_view: self, [
+            .top(anchor: weightParameterTitleLabel.bottomAnchor, constant: 20),
+            .height(constant: 15),
+            .leading(anchor: self.leadingAnchor, constant: 120),
+            .trailing(anchor: self.trailingAnchor, constant: 16)
+        ])
+        attackParameterValueLabel.addConstraints(to_view: self, [
+            .top(anchor: powerParameterValueLabel.bottomAnchor, constant: 40),
+            .height(constant: 15),
+            .leading(anchor: self.leadingAnchor, constant: 120),
+            .trailing(anchor: self.trailingAnchor, constant: 16)
+        ])
+        damageParameterValueLabel.addConstraints(to_view: self, [
+            .top(anchor: attackParameterValueLabel.bottomAnchor, constant: 20),
+            .height(constant: 15),
+            .leading(anchor: self.leadingAnchor, constant: 120),
+            .trailing(anchor: self.trailingAnchor, constant: 16)
+        ])
+        
         generalInfoTextView.addConstraints(to_view: self, [
-            .top(anchor: damageParameter.bottomAnchor, constant: 20),
+            .top(anchor: damageParameterTitleLabel.bottomAnchor, constant: 20),
             .leading(anchor: self.leadingAnchor, constant: 16),
             .trailing(anchor: self.trailingAnchor, constant: 16),
             .bottom(anchor: self.bottomAnchor, constant: 20)
