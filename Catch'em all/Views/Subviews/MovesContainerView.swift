@@ -38,8 +38,8 @@ class MovesContainerView: UIView {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "There are available moves:"
-        titleLabel.font = UIFont(name: "Lato-Semibold", size: 18)
+        titleLabel.text = "\(AppConstants.MovesContainerView.titleLabelText):"
+        titleLabel.font = UIFont(name: AppConstants.Fonts.latoSemibold, size: 18)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
         
@@ -49,8 +49,9 @@ class MovesContainerView: UIView {
     private func setupMovesInfoTextView() {
         movesInfoTextView.overrideUserInterfaceStyle = .light
         movesInfoTextView.isEditable = false
-        movesInfoTextView.font = UIFont(name: "Lato-Regular", size: 15)
+        movesInfoTextView.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 15)
         movesInfoTextView.textAlignment = .justified
+        movesInfoTextView.textColor = .gray
 
         self.addSubview(movesInfoTextView)
     }

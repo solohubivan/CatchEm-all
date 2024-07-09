@@ -4,7 +4,6 @@
 //
 //  Created by Ivan Solohub on 10.06.2024.
 //
-
 import UIKit
 
 class DetailInfoPokemonVC: UIViewController {
@@ -24,12 +23,14 @@ class DetailInfoPokemonVC: UIViewController {
     private var evolutionContainerView = EvolutionContainerView()
     private var movesContainerView = MovesContainerView()
 
-    var detailVCviewModel: PokemonMainInfoDataModel?
+    var viewModel: DetailInfoPokemonViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        updateUI(with: detailVCviewModel!)
+        
+        guard let viewModel = viewModel else { return }
+        updateUI(with: viewModel)
         selectedButton(infoModesButtons.first)
     }
     
@@ -65,24 +66,24 @@ class DetailInfoPokemonVC: UIViewController {
         movesContainerView.isHidden = true
             
         switch button.currentTitle {
-        case "About":
+        case AppConstants.ButtonTitleLabels.aboutButton:
             aboutContainerView.isHidden = false
-            if let viewModel = detailVCviewModel {
-                aboutContainerView.updateAboutContainerView(with: viewModel)
+            if let viewModel = viewModel {
+                aboutContainerView.updateAboutContainerView(with: viewModel.aboutInfo)
             }
-        case "Stats":
+        case AppConstants.ButtonTitleLabels.statsButton:
             statsContainerView.isHidden = false
-            if let viewModel = detailVCviewModel {
-                statsContainerView.updateStatsContainerView(with: viewModel)
+            if let viewModel = viewModel {
+                statsContainerView.updateStatsContainerView(with: viewModel.stats)
             }
-        case "Evolution":
+        case AppConstants.ButtonTitleLabels.evolutionButton:
             evolutionContainerView.isHidden = false
-            if let viewModel = detailVCviewModel {
-                evolutionContainerView.updateEvolutionContainerView(with: viewModel)
+            if let viewModel = viewModel {
+                evolutionContainerView.updateEvolutionContainerView(with: viewModel.evolution)
             }
-        case "Moves":
+        case AppConstants.ButtonTitleLabels.movesButton:
             movesContainerView.isHidden = false
-            if let viewModel = detailVCviewModel {
+            if let viewModel = viewModel {
                 movesContainerView.updateMovesInfoTextView(with: viewModel.moves)
             }
         default:
@@ -90,27 +91,18 @@ class DetailInfoPokemonVC: UIViewController {
         }
     }
     
-    private func updateUI(with viewModel: PokemonMainInfoDataModel) {
-        nameLabel.text = viewModel.name.capitalized
+    private func updateUI(with viewModel: DetailInfoPokemonViewModel) {
+        nameLabel.text = viewModel.name
         
-        if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
-            pokemonImageView.image = cachedImage
-        } else if let imageUrl = URL(string: viewModel.imageURL) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.pokemonImageView.image = image
-                    }
-                    CacheManager.shared.cacheImage(image, forKey: viewModel.imageURL)
-                }
-            }
+        viewModel.loadImage { [weak self] image in
+            self?.pokemonImageView.image = image
         }
     }
     
     private func createParametersLabels(labelName: UILabel, parametersText: String, textColor: UIColor) {
         labelName.text = parametersText
         labelName.textColor = textColor
-        labelName.font = UIFont(name: "Lato-Regular", size: 13)
+        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
         labelName.textAlignment = .left
     }
 }
@@ -131,7 +123,7 @@ extension DetailInfoPokemonVC {
     }
     
     private func setupGoBackButton() {
-        let buttonImage = UIImage(named: "leftArrow")
+        let buttonImage = UIImage(named: AppConstants.ImageNames.leftArrow)
         goBackButton.setImage(buttonImage, for: .normal)
         goBackButton.imageView?.contentMode = .scaleAspectFit
         goBackButton.addTarget(self, action: #selector(backToMain), for: .touchUpInside)
@@ -141,14 +133,14 @@ extension DetailInfoPokemonVC {
     
     private func setupHerosNameLabel() {
         nameLabel.textColor = UIColor.hex231F20
-        nameLabel.font = UIFont(name: "Lato-Bold", size: 24)
+        nameLabel.font = UIFont(name: AppConstants.Fonts.latoBold, size: 24)
         nameLabel.textAlignment = .left
         
         view.addSubview(nameLabel)
     }
     
     private func setupHerosImageView() {
-        pokemonImageView.image = UIImage(named: "mainVCBackground")
+        pokemonImageView.image = UIImage(named: AppConstants.ImageNames.mainVCBGImage)
         pokemonImageView.contentMode = .scaleAspectFit
         
         view.addSubview(pokemonImageView)
@@ -159,13 +151,16 @@ extension DetailInfoPokemonVC {
         pokemonsInfoModeButtonsStackView.distribution = .equalSpacing
         pokemonsInfoModeButtonsStackView.spacing = 16
 
-        let buttonsTitles = ["About", "Stats", "Evolution", "Moves"]
+        let buttonsTitles = [AppConstants.ButtonTitleLabels.aboutButton,
+                             AppConstants.ButtonTitleLabels.statsButton,
+                             AppConstants.ButtonTitleLabels.evolutionButton,
+                             AppConstants.ButtonTitleLabels.movesButton]
             
         for title in buttonsTitles {
             let button = UIButton(type: .system)
             button.setTitle(title, for: .normal)
             button.setTitleColor(.black, for: .normal)
-            button.titleLabel?.font = UIFont(name: "Lato-Regular", size: 14)
+            button.titleLabel?.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 14)
             button.titleLabel?.textAlignment = .center
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             
@@ -183,7 +178,7 @@ extension DetailInfoPokemonVC {
             let selfLine = UIView()
             view.addSubview(selfLine)
             selfLine.addConstraints(to_view: view, [
-                .top(anchor: pokemonsInfoModeButtonsStackView.bottomAnchor, constant: 0),
+                .top(anchor: pokemonsInfoModeButtonsStackView.bottomAnchor, constant: .zero),
                 .height(constant: 1),
                 .leading(anchor: button.leadingAnchor, constant: -10),
                 .trailing(anchor: button.trailingAnchor, constant: -10)
@@ -225,7 +220,7 @@ extension DetailInfoPokemonVC {
             .trailing(anchor: view.trailingAnchor, constant: 40),
             .height(constant: 25)
         ])
-        
+
         underscoreLineView.addConstraints(to_view: view, [
             .top(anchor: pokemonsInfoModeButtonsStackView.bottomAnchor, constant: 0),
             .leading(anchor: view.leadingAnchor, constant: 24),

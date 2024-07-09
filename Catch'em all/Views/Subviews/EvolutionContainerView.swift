@@ -46,14 +46,14 @@ class EvolutionContainerView: UIView {
     private func createLabelText(title: String, value: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: "\(title):", attributes: [
             .foregroundColor: UIColor.black,
-            .font: UIFont(name: "Lato-Regular", size: 13)!
+            .font: UIFont(name: AppConstants.Fonts.latoRegular, size: 13)!
         ])
             
         let spacing = "    "
         
         let valueText = NSAttributedString(string: "\(spacing)\(value)", attributes: [
             .foregroundColor: UIColor.gray,
-            .font: UIFont(name: "Lato-Regular", size: 13)!
+            .font: UIFont(name: AppConstants.Fonts.latoRegular, size: 13)!
         ])
             
         attributedText.append(valueText)
@@ -65,7 +65,7 @@ class EvolutionContainerView: UIView {
         let filteredEvolutions = nextEvolutions.filter { $0.capitalized != viewModel.name.capitalized }
             
         if nextEvolutions.last?.capitalized == viewModel.name.capitalized {
-            return "It is the last evolution stage yet"
+            return AppConstants.EvolutionContainerView.lastEvolutionStageLabelText
         } else {
             return filteredEvolutions.joined(separator: ", ").capitalized
         }
@@ -74,11 +74,11 @@ class EvolutionContainerView: UIView {
     // MARK: - Public methods
     
     func updateEvolutionContainerView(with viewModel: PokemonMainInfoDataModel) {
-        currentEvolutionNameLabel.attributedText = createLabelText(title: "Current evolution", value: viewModel.name.capitalized)
-        nextEvolutionsNamesLabel.attributedText = createLabelText(title: "Next evolution", value: createNextEvolutionsText(for: viewModel))
-        triggerForNextEvolutionStageLabel.attributedText = createLabelText(title: "Trigger for next evolution", value: viewModel.evolutionTrigger.capitalized)
-        minLevelForNextEvolutionStageLabel.attributedText = createLabelText(title: "Minimal level for evolution", value: String(viewModel.minLevel ?? 0))
-        placeForNextEvolutionLabel.attributedText = createLabelText(title: "Place for next evolution", value: viewModel.evolutionLocation?.capitalized ?? "N/A")
+        currentEvolutionNameLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.currentEvolutionParameter, value: viewModel.name.capitalized)
+        nextEvolutionsNamesLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.nextEvolutionParameter, value: createNextEvolutionsText(for: viewModel))
+        triggerForNextEvolutionStageLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.triggerNextEvolutionParameter, value: viewModel.evolutionTrigger.capitalized)
+        minLevelForNextEvolutionStageLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.minimalLevelForEvolutionParameter, value: String(viewModel.minLevel ?? 0))
+        placeForNextEvolutionLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.placeForNextEvolutionParameter, value: viewModel.evolutionLocation?.capitalized ?? "N/A")
     }
 }
 

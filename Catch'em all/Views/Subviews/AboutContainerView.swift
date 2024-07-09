@@ -43,7 +43,7 @@ class AboutContainerView: UIView {
     private func createParametersLabels(labelName: UILabel, text: String, textColor: UIColor) {
         labelName.text = text
         labelName.textColor = textColor
-        labelName.font = UIFont(name: "Lato-Regular", size: 13)
+        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
         labelName.textAlignment = .left
     }
     
@@ -54,7 +54,7 @@ class AboutContainerView: UIView {
             
         for _ in 0..<attackValue {
             let attachment = NSTextAttachment()
-            attachment.image = UIImage(named: "fireSpin")
+            attachment.image = UIImage(named: AppConstants.ImageNames.fireSpin)
             attachment.bounds = CGRect(x: 0, y: -5, width: 20, height: 20)
             attributedString.append(NSAttributedString(attachment: attachment))
             attributedString.append(NSAttributedString(string: " "))
@@ -82,11 +82,11 @@ class AboutContainerView: UIView {
 // MARK: - Setup UI
 extension AboutContainerView {
     private func setupPokemonParametersLabels() {
-        createParametersLabels(labelName: heightParameterTitleLabel, text: "Height:", textColor: .black)
-        createParametersLabels(labelName: weightParameterTitleLabel, text: "Weight:", textColor: .black)
-        createParametersLabels(labelName: powerParameterTitleLabel, text: "Power:", textColor: .black)
-        createParametersLabels(labelName: attackParameterTitleLabel, text: "Attack:", textColor: .black)
-        createParametersLabels(labelName: damageParameterTitleLabel, text: "Damage:", textColor: .black)
+        createParametersLabels(labelName: heightParameterTitleLabel, text: "\(AppConstants.AboutContainerView.heightParameter):", textColor: .black)
+        createParametersLabels(labelName: weightParameterTitleLabel, text: "\(AppConstants.AboutContainerView.weightParameter):", textColor: .black)
+        createParametersLabels(labelName: powerParameterTitleLabel, text: "\(AppConstants.AboutContainerView.powerParameter):", textColor: .black)
+        createParametersLabels(labelName: attackParameterTitleLabel, text: "\(AppConstants.AboutContainerView.attackParameter):", textColor: .black)
+        createParametersLabels(labelName: damageParameterTitleLabel, text: "\(AppConstants.AboutContainerView.damageParameter):", textColor: .black)
         
         createParametersLabels(labelName: heightParameterValueLabel, text: "", textColor: .gray)
         createParametersLabels(labelName: weightParameterValueLabel, text: "", textColor: .gray)
@@ -109,7 +109,7 @@ extension AboutContainerView {
         generalInfoTextView.overrideUserInterfaceStyle = .light
         generalInfoTextView.textContainerInset = .zero
         generalInfoTextView.textContainer.lineFragmentPadding = 0
-        generalInfoTextView.font = UIFont(name: "Lato-Regular", size: 13)
+        generalInfoTextView.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
         
         self.addSubview(generalInfoTextView)
     }

@@ -56,7 +56,7 @@ extension PresentPokemonsCollectionViewCell {
     
     private func setupNameLabel() {
         nameLabel.textColor = UIColor.hexE40000
-        nameLabel.font = UIFont(name: "Lato-Bold", size: 16)
+        nameLabel.font = UIFont(name: AppConstants.Fonts.latoBold, size: 16)
         nameLabel.textAlignment = .left
         
         self.addSubview(nameLabel)
@@ -64,7 +64,7 @@ extension PresentPokemonsCollectionViewCell {
     
     private func setupHerosAbilityLabel() {
         herosAbilityLabel.textColor = UIColor.hex50555C
-        herosAbilityLabel.font = UIFont(name: "Lato-Regular", size: 11)
+        herosAbilityLabel.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 11)
         herosAbilityLabel.textAlignment = .left
         
         self.addSubview(herosAbilityLabel)

@@ -42,12 +42,12 @@ class StatsContainerView: UIView {
     }
     
     private func setupStatsParametersLabels() {
-        createParametersLabels(labelName: pokemonHPTitleLabel, text: "HP", textColor: .black)
-        createParametersLabels(labelName: pokemonAttackTitleLabel, text: "Attack", textColor: .black)
-        createParametersLabels(labelName: pokemonSpecialAttackTitleLabel, text: "Special attack", textColor: .black)
-        createParametersLabels(labelName: pokemonDefenseTitleLabel, text: "DefenseLabel", textColor: .black)
-        createParametersLabels(labelName: pokemonSpecialDefenseTitleLabel, text: "Special defense", textColor: .black)
-        createParametersLabels(labelName: pokemonSpeedTitleLabel, text: "Speed", textColor: .black)
+        createParametersLabels(labelName: pokemonHPTitleLabel, text: "\(AppConstants.StatsContainerView.hpParameter):", textColor: .black)
+        createParametersLabels(labelName: pokemonAttackTitleLabel, text: "\(AppConstants.StatsContainerView.attackParameter):", textColor: .black)
+        createParametersLabels(labelName: pokemonSpecialAttackTitleLabel, text: "\(AppConstants.StatsContainerView.specialAttackParameter):", textColor: .black)
+        createParametersLabels(labelName: pokemonDefenseTitleLabel, text: "\(AppConstants.StatsContainerView.defenseParameter):", textColor: .black)
+        createParametersLabels(labelName: pokemonSpecialDefenseTitleLabel, text: "\(AppConstants.StatsContainerView.specialDefenseParameter):", textColor: .black)
+        createParametersLabels(labelName: pokemonSpeedTitleLabel, text: "\(AppConstants.StatsContainerView.speedParameter):", textColor: .black)
         
         createParametersLabels(labelName: pokemonHPValueLabel, text: "", textColor: .gray)
         createParametersLabels(labelName: pokemonAttackValueLabel, text: "", textColor: .gray)
@@ -76,7 +76,7 @@ class StatsContainerView: UIView {
     private func createParametersLabels(labelName: UILabel, text: String, textColor: UIColor) {
         labelName.text = text
         labelName.textColor = textColor
-        labelName.font = UIFont(name: "Lato-Regular", size: 13)
+        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
         labelName.textAlignment = .left
     }
     

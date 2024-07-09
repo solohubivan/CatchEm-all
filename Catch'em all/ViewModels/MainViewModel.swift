@@ -25,7 +25,6 @@ class MainViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] in
                 self?.pokemons = self?.apiDataManager.getPokemonsDetailInfo() ?? []
- //               self?.pokemons.forEach { print($0) }
             })
             .store(in: &cancellables)
     }

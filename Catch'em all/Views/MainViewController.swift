@@ -55,7 +55,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: "MainVCCellId", for: indexPath) as! PresentPokemonsCollectionViewCell
+        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.Identifiers.mainVCCellID, for: indexPath) as! PresentPokemonsCollectionViewCell
             
         let pokemonDetail = viewModel.pokemons[indexPath.item]
         let cellViewModel = PresentPokemonsCellViewModel(viewModel: pokemonDetail)
@@ -67,18 +67,19 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pokemonDetail = viewModel.pokemons[indexPath.item]
         let detailVC = DetailInfoPokemonVC()
-        
-        detailVC.detailVCviewModel = pokemonDetail
+
+        let detailViewModel = DetailInfoPokemonViewModel(pokemon: pokemonDetail)
+        detailVC.viewModel = detailViewModel
         
         detailVC.modalPresentationStyle = .fullScreen
         self.present(detailVC, animated: true)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width / 2 - 28
-        let height = width / 1.4815
-        return CGSize(width: width, height: height)
-    }
+           let width = (view.frame.width - 24 * 2 - 8) / 2
+           let height = width / 1.4815
+           return CGSize(width: width, height: height)
+       }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
@@ -86,6 +87,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: .zero, left: 24, bottom: .zero, right: 24)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -110,7 +115,7 @@ extension MainViewController {
     }
     
     private func setupBackgroundImageView() {
-        backgroundImageView.image = UIImage(named: "mainVCBackground")
+        backgroundImageView.image = UIImage(named: AppConstants.ImageNames.mainVCBGImage)
         backgroundImageView.contentMode = .scaleAspectFit
         
         view.addSubview(backgroundImageView)
@@ -118,8 +123,8 @@ extension MainViewController {
     }
     
     private func setupMainTitleLabel() {
-        mainTitleLabel.text = "Know Them All"
-        mainTitleLabel.font = UIFont(name:"Lato-Bold", size: 24)
+        mainTitleLabel.text = AppConstants.MainViewController.mainTitleText
+        mainTitleLabel.font = UIFont(name:AppConstants.Fonts.latoBold, size: 24)
         mainTitleLabel.textColor = UIColor.hex231F20
         
         view.addSubview(mainTitleLabel)
@@ -130,8 +135,8 @@ extension MainViewController {
         presentPokemonsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         presentPokemonsCollectionView.delegate = self
         presentPokemonsCollectionView.dataSource = self
-        presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: "MainVCCellId")
-        presentPokemonsCollectionView.layer.masksToBounds = false
+        presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: AppConstants.Identifiers.mainVCCellID)
+        presentPokemonsCollectionView.layer.masksToBounds = true
         
         presentPokemonsCollectionView.overrideUserInterfaceStyle = .light
         presentPokemonsCollectionView.backgroundColor = .clear
@@ -148,9 +153,7 @@ extension MainViewController {
         ])
         
         presentPokemonsCollectionView.addConstraints(to_view: view, [
-            .top(anchor: mainTitleLabel.bottomAnchor, constant: 20),
-            .leading(anchor: view.leadingAnchor, constant: 24),
-            .trailing(anchor: view.trailingAnchor, constant: 24)
+            .top(anchor: mainTitleLabel.bottomAnchor, constant: 20)
         ])
     }
 }
