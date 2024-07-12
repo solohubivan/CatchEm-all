@@ -37,6 +37,16 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
             self?.herosImageView.image = image
         }
     }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            nameLabel.text = nil
+            herosAbilityLabel.text = nil
+            herosImageView.image = nil
+            viewModel = nil
+        
+        print("Cell prepared for reuse")
+        }
 }
 
 // MARK: - Setup UI

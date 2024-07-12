@@ -30,18 +30,45 @@ class MainViewController: UIViewController {
     // MARK: - Private methods
     
     private func fetchPokemonData() {
-        guard !isLoading else { return }
+        guard !isLoading else {
+            print("Already loading")
+            return
+        }
         isLoading = true
+        print("Start fetching data")
         
         viewModel.fetchPokemonData()
     }
     
+//    private func bindViewModel() {
+//        viewModel.$pokemons
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] _ in
+//                self?.isLoading = false
+//                self?.presentPokemonsCollectionView.reloadData()
+//            }
+//            .store(in: &cancellables)
+//    }
+    
     private func bindViewModel() {
         viewModel.$pokemons
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] newPokemons in
                 self?.isLoading = false
-                self?.presentPokemonsCollectionView.reloadData()
+                print("Data fetched, reloading collection view")
+                
+                guard let self = self else { return }
+                
+                let oldCount = self.presentPokemonsCollectionView.numberOfItems(inSection: 0)
+                let newCount = newPokemons.count
+                
+                guard newCount > oldCount else {
+                    self.presentPokemonsCollectionView.reloadData()
+                    return
+                }
+                
+                let newIndexPaths = (oldCount..<newCount).map { IndexPath(item: $0, section: 0) }
+                self.presentPokemonsCollectionView.insertItems(at: newIndexPaths)
             }
             .store(in: &cancellables)
     }
@@ -51,7 +78,10 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pokemons.count
+//        return viewModel.pokemons.count
+        let count = viewModel.pokemons.count
+            print("Number of items: \(count)")
+            return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,6 +90,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let pokemonDetail = viewModel.pokemons[indexPath.item]
         let cellViewModel = PresentPokemonsCellViewModel(viewModel: pokemonDetail)
         cell.configureCell(with: cellViewModel)
+        
+        print("Configuring cell at index: \(indexPath.item)")
             
         return cell
     }
@@ -93,6 +125,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return UIEdgeInsets(top: .zero, left: 24, bottom: .zero, right: 24)
     }
     
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        let height = scrollView.frame.size.height
+//        
+//        if offsetY > contentHeight - height - 100 {
+//            print("Fetching more data")
+//            fetchPokemonData()
+//        }
+//    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
