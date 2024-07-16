@@ -102,7 +102,8 @@ class DetailInfoPokemonVC: UIViewController {
     private func createParametersLabels(labelName: UILabel, parametersText: String, textColor: UIColor) {
         labelName.text = parametersText
         labelName.textColor = textColor
-        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
+        labelName.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        
         labelName.textAlignment = .left
     }
 }
@@ -133,7 +134,7 @@ extension DetailInfoPokemonVC {
     
     private func setupHerosNameLabel() {
         nameLabel.textColor = UIColor.hex231F20
-        nameLabel.font = UIFont(name: AppConstants.Fonts.latoBold, size: 24)
+        nameLabel.setCustomFont(name: AppConstants.Fonts.latoBold, size: 24, textStyle: .title1)
         nameLabel.textAlignment = .left
         
         view.addSubview(nameLabel)
@@ -163,6 +164,11 @@ extension DetailInfoPokemonVC {
             button.titleLabel?.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 14)
             button.titleLabel?.textAlignment = .center
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            
+            if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 14) {
+                button.titleLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+                button.titleLabel?.adjustsFontForContentSizeCategory = true
+            }
             
             infoModesButtons.append(button)
             pokemonsInfoModeButtonsStackView.addArrangedSubview(button)
@@ -229,31 +235,19 @@ extension DetailInfoPokemonVC {
         ])
         
         aboutContainerView.addConstraints(to_view: view, [
-            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
-            .leading(anchor: view.leadingAnchor, constant: 0),
-            .trailing(anchor: view.trailingAnchor, constant: 0),
-            .bottom(anchor: view.bottomAnchor, constant: 0)
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0)
         ])
             
         statsContainerView.addConstraints(to_view: view, [
-            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
-            .leading(anchor: view.leadingAnchor, constant: 0),
-            .trailing(anchor: view.trailingAnchor, constant: 0),
-            .bottom(anchor: view.bottomAnchor, constant: 0)
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0)
         ])
         
         evolutionContainerView.addConstraints(to_view: view, [
-            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
-            .leading(anchor: view.leadingAnchor, constant: 0),
-            .trailing(anchor: view.trailingAnchor, constant: 0),
-            .bottom(anchor: view.bottomAnchor, constant: 0)
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0)
         ])
         
         movesContainerView.addConstraints(to_view: view, [
-            .top(anchor: underscoreLineView.bottomAnchor, constant: 0),
-            .leading(anchor: view.leadingAnchor, constant: 0),
-            .trailing(anchor: view.trailingAnchor, constant: 0),
-            .bottom(anchor: view.bottomAnchor, constant: 0)
+            .top(anchor: underscoreLineView.bottomAnchor, constant: 0)
         ])
     }
 

@@ -76,7 +76,9 @@ class StatsContainerView: UIView {
     private func createParametersLabels(labelName: UILabel, text: String, textColor: UIColor) {
         labelName.text = text
         labelName.textColor = textColor
-        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
+        labelName.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        
+        
         labelName.textAlignment = .left
     }
     

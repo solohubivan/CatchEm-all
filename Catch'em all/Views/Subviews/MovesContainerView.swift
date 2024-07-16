@@ -39,7 +39,7 @@ class MovesContainerView: UIView {
     
     private func setupTitleLabel() {
         titleLabel.text = "\(AppConstants.MovesContainerView.titleLabelText):"
-        titleLabel.font = UIFont(name: AppConstants.Fonts.latoSemibold, size: 18)
+        titleLabel.setCustomFont(name: AppConstants.Fonts.latoSemibold, size: 18, textStyle: .title1)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
         
@@ -49,10 +49,14 @@ class MovesContainerView: UIView {
     private func setupMovesInfoTextView() {
         movesInfoTextView.overrideUserInterfaceStyle = .light
         movesInfoTextView.isEditable = false
-        movesInfoTextView.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 15)
         movesInfoTextView.textAlignment = .justified
         movesInfoTextView.textColor = .gray
-
+        
+        if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 13) {
+            movesInfoTextView.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+            movesInfoTextView.adjustsFontForContentSizeCategory = true
+        }
+        
         self.addSubview(movesInfoTextView)
     }
 }

@@ -8,6 +8,7 @@ import UIKit
 
 class DetailInfoPokemonViewModel {
     private var pokemon: PokemonMainInfoDataModel
+    private let cacheManager = CacheManager()
     
     init(pokemon: PokemonMainInfoDataModel) {
         self.pokemon = pokemon
@@ -38,13 +39,13 @@ class DetailInfoPokemonViewModel {
     }
     
     func loadImage(completion: @escaping (UIImage?) -> Void) {
-        if let cachedImage = CacheManager.shared.getImage(forKey: pokemon.imageURL) {
+        if let cachedImage = cacheManager.getImage(forKey: pokemon.imageURL) {
             completion(cachedImage)
         } else if let url = imageURL {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        CacheManager.shared.cacheImage(image, forKey: self.pokemon.imageURL)
+                        self.cacheManager.cacheImage(image, forKey: self.pokemon.imageURL)
                         completion(image)
                     }
                 } else {

@@ -11,6 +11,7 @@ import Combine
 class PresentPokemonsCellViewModel {
     private var viewModel: PokemonMainInfoDataModel
     private var cancellables = Set<AnyCancellable>()
+    private let cacheManager = CacheManager()
     
     init(viewModel: PokemonMainInfoDataModel) {
         self.viewModel = viewModel
@@ -25,9 +26,8 @@ class PresentPokemonsCellViewModel {
     }
     
     func loadImage(completion: @escaping (UIImage?) -> Void) {
-        if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
+        if let cachedImage = cacheManager.getImage(forKey: viewModel.imageURL) {
             completion(cachedImage)
-            print("Loaded cached image for URL: \(viewModel.imageURL)")
         } else if let imageUrl = URL(string: viewModel.imageURL) {
             URLSession.shared.dataTaskPublisher(for: imageUrl)
                 .map { UIImage(data: $0.data) }
@@ -35,35 +35,13 @@ class PresentPokemonsCellViewModel {
                 .receive(on: DispatchQueue.main)
                 .sink { image in
                     if let image = image {
-                        CacheManager.shared.cacheImage(image, forKey: self.viewModel.imageURL)
-                        print("Downloaded and cached image for URL: \(self.viewModel.imageURL)")
+                        self.cacheManager.cacheImage(image, forKey: self.viewModel.imageURL)
                     }
                     completion(image)
                 }
                 .store(in: &cancellables)
         } else {
             completion(nil)
-            print("Invalid URL: \(viewModel.imageURL)")
         }
     }
-//    func loadImage(completion: @escaping (UIImage?) -> Void) {
-//        if let cachedImage = CacheManager.shared.getImage(forKey: viewModel.imageURL) {
-//            completion(cachedImage)
-//        } else if let imageUrl = URL(string: viewModel.imageURL) {
-//            URLSession.shared.dataTaskPublisher(for: imageUrl)
-//                .map { UIImage(data: $0.data) }
-//                .replaceError(with: nil)
-//                .receive(on: DispatchQueue.main)
-//                .sink { [weak self] image in
-//                    guard let self = self else { return }
-//                    if let image = image {
-//                        CacheManager.shared.cacheImage(image, forKey: self.viewModel.imageURL)
-//                    }
-//                    completion(image)
-//                }
-//                .store(in: &cancellables)
-//        } else {
-//            completion(nil)
-//        }
-//    }
 }

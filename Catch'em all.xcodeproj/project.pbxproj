@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */; };
+		2204420D2C470F2C00453E34 /* UILabel+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2204420C2C470F2C00453E34 /* UILabel+CustomFont.swift */; };
+		2204420F2C4724BF00453E34 /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2204420E2C4724BF00453E34 /* UIFont+CustomFont.swift */; };
 		220AE2072C1F646300F708F7 /* PokemonMainInfoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AE2062C1F646300F708F7 /* PokemonMainInfoDataModel.swift */; };
 		222356892C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222356882C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift */; };
 		222EC0B72C17898500804A99 /* DetailInfoPokemonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EC0B62C17898500804A99 /* DetailInfoPokemonVC.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2204420C2C470F2C00453E34 /* UILabel+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CustomFont.swift"; sourceTree = "<group>"; };
+		2204420E2C4724BF00453E34 /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
 		220AE2062C1F646300F708F7 /* PokemonMainInfoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMainInfoDataModel.swift; sourceTree = "<group>"; };
 		222356882C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoPokemonViewModel.swift; sourceTree = "<group>"; };
 		222EC0B62C17898500804A99 /* DetailInfoPokemonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoPokemonVC.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				22B444812C08580100085AFA /* UIView+Constraints.swift */,
 				22B444832C08583100085AFA /* UIViewController+KeyboardHandling.swift */,
 				22B444852C08585A00085AFA /* UIColor+Extension.swift */,
+				2204420C2C470F2C00453E34 /* UILabel+CustomFont.swift */,
+				2204420E2C4724BF00453E34 /* UIFont+CustomFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				227E82372C1F141B00CC749A /* PokemonApiResponse.swift in Sources */,
 				22BA54C42C2A34EA006D0966 /* AboutContainerView.swift in Sources */,
 				2262A6612C1E0274008BFAF3 /* ApiDataManager.swift in Sources */,
+				2204420D2C470F2C00453E34 /* UILabel+CustomFont.swift in Sources */,
 				22B4446B2C084FE100085AFA /* MainViewController.swift in Sources */,
 				22B444672C084FE100085AFA /* AppDelegate.swift in Sources */,
 				222356892C262A9B00B1E02A /* DetailInfoPokemonViewModel.swift in Sources */,
@@ -309,6 +316,7 @@
 				22B444882C0858A900085AFA /* AppConstants.swift in Sources */,
 				22697DE52C373E0600EDDF69 /* EvolutionContainerView.swift in Sources */,
 				22B444692C084FE100085AFA /* SceneDelegate.swift in Sources */,
+				2204420F2C4724BF00453E34 /* UIFont+CustomFont.swift in Sources */,
 				222EC0B72C17898500804A99 /* DetailInfoPokemonVC.swift in Sources */,
 				22021AD22C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift in Sources */,
 				22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */,

@@ -30,6 +30,7 @@ class EvolutionContainerView: UIView {
     private func setupUI() {
         self.backgroundColor = .clear
         setupEvolutionParametersLabels()
+        customizeEvolutionParametersLabels()
         setupConstraints()
     }
     
@@ -41,19 +42,25 @@ class EvolutionContainerView: UIView {
         self.addSubview(placeForNextEvolutionLabel)
     }
     
+    private func customizeEvolutionParametersLabels() {
+        currentEvolutionNameLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        nextEvolutionsNamesLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        triggerForNextEvolutionStageLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        minLevelForNextEvolutionStageLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        placeForNextEvolutionLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+    }
+    
     // MARK: - Privat Methods
     
     private func createLabelText(title: String, value: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: "\(title):", attributes: [
-            .foregroundColor: UIColor.black,
-            .font: UIFont(name: AppConstants.Fonts.latoRegular, size: 13)!
+            .foregroundColor: UIColor.black
         ])
             
         let spacing = "    "
         
         let valueText = NSAttributedString(string: "\(spacing)\(value)", attributes: [
-            .foregroundColor: UIColor.gray,
-            .font: UIFont(name: AppConstants.Fonts.latoRegular, size: 13)!
+            .foregroundColor: UIColor.gray
         ])
             
         attributedText.append(valueText)
@@ -77,8 +84,8 @@ class EvolutionContainerView: UIView {
         currentEvolutionNameLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.currentEvolutionParameter, value: viewModel.name.capitalized)
         nextEvolutionsNamesLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.nextEvolutionParameter, value: createNextEvolutionsText(for: viewModel))
         triggerForNextEvolutionStageLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.triggerNextEvolutionParameter, value: viewModel.evolutionTrigger.capitalized)
-        minLevelForNextEvolutionStageLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.minimalLevelForEvolutionParameter, value: String(viewModel.minLevel ?? 0))
-        placeForNextEvolutionLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.placeForNextEvolutionParameter, value: viewModel.evolutionLocation?.capitalized ?? "N/A")
+        minLevelForNextEvolutionStageLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.minimalLevelForEvolutionParameter, value: String(viewModel.minLevel ?? .zero))
+        placeForNextEvolutionLabel.attributedText = createLabelText(title: AppConstants.EvolutionContainerView.placeForNextEvolutionParameter, value: viewModel.evolutionLocation?.capitalized ?? AppConstants.EvolutionContainerView.defaultValue)
     }
 }
 

@@ -22,6 +22,14 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = nil
+        herosAbilityLabel.text = nil
+        herosImageView.image = nil
+        viewModel = nil
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,16 +45,6 @@ class PresentPokemonsCollectionViewCell: UICollectionViewCell {
             self?.herosImageView.image = image
         }
     }
-    
-    override func prepareForReuse() {
-            super.prepareForReuse()
-            nameLabel.text = nil
-            herosAbilityLabel.text = nil
-            herosImageView.image = nil
-            viewModel = nil
-        
-        print("Cell prepared for reuse")
-        }
 }
 
 // MARK: - Setup UI
@@ -66,7 +64,7 @@ extension PresentPokemonsCollectionViewCell {
     
     private func setupNameLabel() {
         nameLabel.textColor = UIColor.hexE40000
-        nameLabel.font = UIFont(name: AppConstants.Fonts.latoBold, size: 16)
+        nameLabel.setCustomFont(name: AppConstants.Fonts.latoBold, size: 16, textStyle: .title1)
         nameLabel.textAlignment = .left
         
         self.addSubview(nameLabel)
@@ -74,7 +72,7 @@ extension PresentPokemonsCollectionViewCell {
     
     private func setupHerosAbilityLabel() {
         herosAbilityLabel.textColor = UIColor.hex50555C
-        herosAbilityLabel.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 11)
+        herosAbilityLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 11, textStyle: .body)
         herosAbilityLabel.textAlignment = .left
         
         self.addSubview(herosAbilityLabel)

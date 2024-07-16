@@ -60,6 +60,7 @@ enum AppConstants {
         static let triggerNextEvolutionParameter: String = "Trigger for next evolution"
         static let minimalLevelForEvolutionParameter: String = "Minimal level for evolution"
         static let placeForNextEvolutionParameter: String = "Place for next evolution"
+        static let defaultValue: String = "Unknown information yet :("
     }
     
     enum MovesContainerView {

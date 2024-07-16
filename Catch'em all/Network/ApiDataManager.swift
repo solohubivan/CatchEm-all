@@ -13,7 +13,7 @@ class ApiDataManager {
     private var availablePokemons: [Pokemon] = []
     private var nextPageURL: String? = "https://pokeapi.co/api/v2/pokemon"
     private var cancellables = Set<AnyCancellable>()
-    private let cacheManager = CacheManager.shared
+    private let cacheManager = CacheManager()
     
     // MARK: - Public Methods
     
@@ -180,9 +180,9 @@ class ApiDataManager {
             .map { (evolutionChainResponse: PokemonEvolutionChainResponse) -> EvolutionInfo in
                 let nextEvolutions = self.getNextEvolutions(from: evolutionChainResponse.chain.evolvesTo)
                 let evolutionDetails = evolutionChainResponse.chain.evolvesTo.first?.evolutionDetails.first
-                let evolutionTrigger = evolutionDetails?.trigger.name ?? "N/A"
+                let evolutionTrigger = evolutionDetails?.trigger.name ?? AppConstants.EvolutionContainerView.defaultValue
                 let minLevel = evolutionDetails?.minLevel
-                let evolutionLocation = evolutionDetails?.location?.name ?? "N/A"
+                let evolutionLocation = evolutionDetails?.location?.name ?? AppConstants.EvolutionContainerView.defaultValue
                     
                 return EvolutionInfo(
                     nextEvolutions: nextEvolutions,

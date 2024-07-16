@@ -43,7 +43,8 @@ class AboutContainerView: UIView {
     private func createParametersLabels(labelName: UILabel, text: String, textColor: UIColor) {
         labelName.text = text
         labelName.textColor = textColor
-        labelName.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
+        labelName.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
+        
         labelName.textAlignment = .left
     }
     
@@ -59,7 +60,7 @@ class AboutContainerView: UIView {
             attributedString.append(NSAttributedString(attachment: attachment))
             attributedString.append(NSAttributedString(string: " "))
         }
-            
+        
         attackParameterValueLabel.attributedText = attributedString
     }
 
@@ -109,7 +110,11 @@ extension AboutContainerView {
         generalInfoTextView.overrideUserInterfaceStyle = .light
         generalInfoTextView.textContainerInset = .zero
         generalInfoTextView.textContainer.lineFragmentPadding = 0
-        generalInfoTextView.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 13)
+        
+        if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 13) {
+            generalInfoTextView.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+            generalInfoTextView.adjustsFontForContentSizeCategory = true
+        }
         
         self.addSubview(generalInfoTextView)
     }
