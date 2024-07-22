@@ -9,12 +9,8 @@ import UIKit
 
 class CacheManager {
     
- //   static let shared = CacheManager()
-    
     private let cache = NSCache<NSString, NSData>()
     private let imageCache = NSCache<NSString, UIImage>()
-    
-//    private init() {}
     
     func cachePokemonsDetailInfoData(_ model: Pokemon, forKey key: String) {
         let encoder = JSONEncoder()
