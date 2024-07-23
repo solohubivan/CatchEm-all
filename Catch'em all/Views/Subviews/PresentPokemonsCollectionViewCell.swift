@@ -74,6 +74,7 @@ extension PresentPokemonsCollectionViewCell {
         herosAbilityLabel.textColor = UIColor.hex50555C
         herosAbilityLabel.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 11, textStyle: .body)
         herosAbilityLabel.textAlignment = .left
+        herosAbilityLabel.numberOfLines = 0
         
         self.addSubview(herosAbilityLabel)
     }
@@ -101,8 +102,8 @@ extension PresentPokemonsCollectionViewCell {
         herosAbilityLabel.addConstraints(to_view: self, [
             .top(anchor: nameLabel.bottomAnchor, constant: 5),
             .leading(anchor: self.leadingAnchor, constant: 9),
-            .trailing(anchor: herosImageView.leadingAnchor, constant: 8),
-            .height(constant: 14)
+            .trailing(anchor: self.trailingAnchor, constant: 20),
+            .height(constant: 36)
         ])
         
         herosImageView.addConstraints(to_view: self, [
