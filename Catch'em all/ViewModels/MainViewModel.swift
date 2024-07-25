@@ -10,7 +10,7 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
-    @Published var pokemons: [PokemonMainInfoDataModel] = []
+    @Published var pokemons: [PokemonInfo] = []
     private var apiDataManager = ApiDataManager()
     private var cancellables = Set<AnyCancellable>()
     

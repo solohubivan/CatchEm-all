@@ -7,10 +7,11 @@
 import UIKit
 
 class DetailInfoPokemonViewModel {
-    private var pokemon: PokemonMainInfoDataModel
+    private var pokemon: PokemonInfo
     private let cacheManager = CacheManager()
+    var currentMode: InfoMode = .about
     
-    init(pokemon: PokemonMainInfoDataModel) {
+    init(pokemon: PokemonInfo) {
         self.pokemon = pokemon
     }
     
@@ -22,15 +23,15 @@ class DetailInfoPokemonViewModel {
         return URL(string: pokemon.imageURL)
     }
     
-    var aboutInfo: PokemonMainInfoDataModel {
+    var aboutInfo: PokemonInfo {
         return pokemon
     }
     
-    var stats: PokemonMainInfoDataModel {
+    var stats: PokemonInfo {
         return pokemon
     }
     
-    var evolution: PokemonMainInfoDataModel {
+    var evolution: PokemonInfo {
         return pokemon
     }
     

@@ -57,7 +57,6 @@ enum AppConstants {
         static let lastEvolutionStageLabelText: String = "It is the last evolution stage yet"
         static let currentEvolutionParameter: String = "Current evolution"
         static let nextEvolutionParameter: String = "Next evolution"
-//        static let triggerNextEvolutionParameter: String = "Trigger for next\nevolution"
         static let triggerNextEvolutionParameter: String = "Trigger for next evolution"
         static let minimalLevelForEvolutionParameter: String = "Minimal level for evolution"
         static let placeForNextEvolutionParameter: String = "Place for next evolution"

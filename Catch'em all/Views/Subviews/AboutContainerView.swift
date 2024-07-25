@@ -66,7 +66,7 @@ class AboutContainerView: UIView {
 
     // MARK: - Public Methods
     
-    func updateAboutContainerView(with viewModel: PokemonMainInfoDataModel) {
+    func updateAboutContainerView(with viewModel: PokemonInfo) {
         let heightValue = viewModel.height * 100
         let weightValue = viewModel.weight / 10
         let abilitiesText = viewModel.abilities.joined(separator: ", ")

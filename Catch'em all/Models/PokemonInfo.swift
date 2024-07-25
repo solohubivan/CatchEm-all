@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonMainInfoDataModel: Codable {
+struct PokemonInfo: Codable {
     var name: String
     var imageURL: String
     var abilities: [String]

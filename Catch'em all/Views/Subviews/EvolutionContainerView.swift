@@ -78,7 +78,7 @@ class EvolutionContainerView: UIView {
         labelName.lineBreakMode = .byWordWrapping
     }
     
-    private func createNextEvolutionsText(for viewModel: PokemonMainInfoDataModel) -> String {
+    private func createNextEvolutionsText(for viewModel: PokemonInfo) -> String {
         let nextEvolutions = viewModel.nextEvolutions
         let filteredEvolutions = nextEvolutions.filter { $0.capitalized != viewModel.name.capitalized }
         
@@ -91,7 +91,7 @@ class EvolutionContainerView: UIView {
     
     // MARK: - Public methods
     
-    func updateEvolutionContainerView(with viewModel: PokemonMainInfoDataModel) {
+    func updateEvolutionContainerView(with viewModel: PokemonInfo) {
         currentEvolutionNameValueLabel.text = viewModel.name.capitalized
         nextEvolutionsNamesValueLabel.text = createNextEvolutionsText(for: viewModel)
         triggerForNextEvolutionStageValueLabel.text = viewModel.evolutionTrigger.capitalized

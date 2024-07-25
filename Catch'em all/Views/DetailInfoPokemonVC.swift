@@ -56,38 +56,32 @@ class DetailInfoPokemonVC: UIViewController {
         infoModeButtonsUnderscore[index].backgroundColor = .red
         
         selectedInfoModeButton = button
-        updateVisibleContainer(for: button)
+        if let viewModel = viewModel {
+            viewModel.currentMode = InfoMode(rawValue: button.tag) ?? .about
+            updateVisibleContainer(for: viewModel.currentMode)
+        }
     }
     
-    private func updateVisibleContainer(for button: UIButton) {
+    private func updateVisibleContainer(for mode: InfoMode) {
         aboutContainerView.isHidden = true
         statsContainerView.isHidden = true
         evolutionContainerView.isHidden = true
         movesContainerView.isHidden = true
             
-        switch button.currentTitle {
-        case AppConstants.ButtonTitleLabels.aboutButton:
+        guard let viewModel = viewModel else { return }
+        switch mode {
+        case .about:
             aboutContainerView.isHidden = false
-            if let viewModel = viewModel {
-                aboutContainerView.updateAboutContainerView(with: viewModel.aboutInfo)
-            }
-        case AppConstants.ButtonTitleLabels.statsButton:
+            aboutContainerView.updateAboutContainerView(with: viewModel.aboutInfo)
+        case .stats:
             statsContainerView.isHidden = false
-            if let viewModel = viewModel {
-                statsContainerView.updateStatsContainerView(with: viewModel.stats)
-            }
-        case AppConstants.ButtonTitleLabels.evolutionButton:
+            statsContainerView.updateStatsContainerView(with: viewModel.stats)
+        case .evolution:
             evolutionContainerView.isHidden = false
-            if let viewModel = viewModel {
-                evolutionContainerView.updateEvolutionContainerView(with: viewModel.evolution)
-            }
-        case AppConstants.ButtonTitleLabels.movesButton:
+            evolutionContainerView.updateEvolutionContainerView(with: viewModel.evolution)
+        case .moves:
             movesContainerView.isHidden = false
-            if let viewModel = viewModel {
-                movesContainerView.updateMovesInfoTextView(with: viewModel.moves)
-            }
-        default:
-            break
+            movesContainerView.updateMovesInfoTextView(with: viewModel.moves)
         }
     }
     
@@ -157,13 +151,14 @@ extension DetailInfoPokemonVC {
                              AppConstants.ButtonTitleLabels.evolutionButton,
                              AppConstants.ButtonTitleLabels.movesButton]
             
-        for title in buttonsTitles {
+        for (index, title) in buttonsTitles.enumerated() {
             let button = UIButton(type: .system)
             button.setTitle(title, for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.font = UIFont(name: AppConstants.Fonts.latoRegular, size: 14)
             button.titleLabel?.textAlignment = .center
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            button.tag = index
             
             if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 14) {
                 button.titleLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
@@ -250,5 +245,4 @@ extension DetailInfoPokemonVC {
             .top(anchor: underscoreLineView.bottomAnchor, constant: 0)
         ])
     }
-
 }

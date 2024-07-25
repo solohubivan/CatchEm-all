@@ -54,8 +54,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.Identifiers.mainVCCellID, for: indexPath) as! PresentPokemonsCollectionViewCell
-            
+        guard let cell = presentPokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.Identifiers.mainVCCellID, for: indexPath) as? PresentPokemonsCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+        
         let pokemonDetail = viewModel.pokemons[indexPath.item]
         let cellViewModel = PresentPokemonsCellViewModel(viewModel: pokemonDetail)
         cell.configureCell(with: cellViewModel)

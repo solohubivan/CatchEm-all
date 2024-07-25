@@ -84,7 +84,7 @@ class StatsContainerView: UIView {
     
     // MARK: - Public Method
     
-    func updateStatsContainerView(with viewModel: PokemonMainInfoDataModel) {
+    func updateStatsContainerView(with viewModel: PokemonInfo) {
         pokemonHPValueLabel.text = "\(viewModel.hp)"
         pokemonAttackValueLabel.text = "\(viewModel.attack)"
         pokemonDefenseValueLabel.text = "\(viewModel.defense)"

@@ -17,9 +17,9 @@ class ApiDataManager {
     
     // MARK: - Public Methods
     
-    func getPokemonsDetailInfo() -> [PokemonMainInfoDataModel] {
+    func getPokemonsDetailInfo() -> [PokemonInfo] {
         return availablePokemons.map {
-            PokemonMainInfoDataModel(
+            PokemonInfo(
                 name: $0.name,
                 imageURL: $0.imageURL ?? "",
                 abilities: $0.abilities ?? [""],
@@ -51,7 +51,7 @@ class ApiDataManager {
         }
         
         return ApiBuilder.fetchData(from: url)
-            .flatMap { [unowned self] (response: PokemonApiResponse) -> AnyPublisher<Void, NetworkError> in
+            .flatMap { [unowned self] (response: PokemonMainInfoResponse) -> AnyPublisher<Void, NetworkError> in
                 self.availablePokemons.append(contentsOf: response.results)
                 self.nextPageURL = response.next
                 return self.fetchDetailsForAllPokemons()
@@ -107,7 +107,7 @@ class ApiDataManager {
         }
         
         return ApiBuilder.fetchData(from: url)
-            .flatMap { (pokemonDetail: PokemonDetailInfoData) -> AnyPublisher<Pokemon, NetworkError> in
+            .flatMap { (pokemonDetail: PokemonDetailInfoResponse) -> AnyPublisher<Pokemon, NetworkError> in
                 let abilities = pokemonDetail.abilities.map { $0.ability.name }
                 let imageURL = pokemonDetail.sprites.frontDefault
 
