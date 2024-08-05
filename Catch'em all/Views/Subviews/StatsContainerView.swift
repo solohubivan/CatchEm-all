@@ -56,6 +56,20 @@ class StatsContainerView: UIView {
         createParametersLabels(labelName: pokemonSpecialDefenseValueLabel, text: "", textColor: .gray)
         createParametersLabels(labelName: pokemonSpeedValueLabel, text: "", textColor: .gray)
         
+        pokemonHPTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonHPTitleLabel
+        pokemonAttackTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonAttackTitleLabel
+        pokemonSpecialAttackTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpecialAttackTitleLabel
+        pokemonDefenseTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonDefenseTitleLabel
+        pokemonSpecialDefenseTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpecialDefenseTitleLabel
+        pokemonSpeedTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpeedTitleLabel
+            
+        pokemonHPValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonHPValueLabel
+        pokemonAttackValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonAttackValueLabel
+        pokemonSpecialAttackValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpecialAttackValueLabel
+        pokemonDefenseValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonDefenseValueLabel
+        pokemonSpecialDefenseValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpecialDefenseValueLabel
+        pokemonSpeedValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonSpeedValueLabel
+        
         self.addSubview(pokemonHPTitleLabel)
         self.addSubview(pokemonAttackTitleLabel)
         self.addSubview(pokemonSpecialAttackTitleLabel)
@@ -77,7 +91,6 @@ class StatsContainerView: UIView {
         labelName.text = text
         labelName.textColor = textColor
         labelName.setCustomFont(name: AppConstants.Fonts.latoRegular, size: 13, textStyle: .body)
-        
         
         labelName.textAlignment = .left
     }

@@ -118,6 +118,7 @@ extension DetailInfoPokemonVC {
     }
     
     private func setupGoBackButton() {
+        goBackButton.accessibilityIdentifier = AppConstants.ObjectsIdentifier.goBackButton
         let buttonImage = UIImage(named: AppConstants.ImageNames.leftArrow)
         goBackButton.setImage(buttonImage, for: .normal)
         goBackButton.imageView?.contentMode = .scaleAspectFit
@@ -127,6 +128,7 @@ extension DetailInfoPokemonVC {
     }
     
     private func setupHerosNameLabel() {
+        nameLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.nameLabel
         nameLabel.textColor = UIColor.hex231F20
         nameLabel.setCustomFont(name: AppConstants.Fonts.latoBold, size: 24, textStyle: .title1)
         nameLabel.textAlignment = .left
@@ -135,6 +137,7 @@ extension DetailInfoPokemonVC {
     }
     
     private func setupHerosImageView() {
+        pokemonImageView.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonImageView
         pokemonImageView.image = UIImage(named: AppConstants.ImageNames.mainVCBGImage)
         pokemonImageView.contentMode = .scaleAspectFit
         
@@ -145,6 +148,7 @@ extension DetailInfoPokemonVC {
         pokemonsInfoModeButtonsStackView.axis = .horizontal
         pokemonsInfoModeButtonsStackView.distribution = .equalSpacing
         pokemonsInfoModeButtonsStackView.spacing = 16
+        pokemonsInfoModeButtonsStackView.accessibilityIdentifier = AppConstants.ObjectsIdentifier.pokemonsInfoModeButtonsStackView
 
         let buttonsTitles = [AppConstants.ButtonTitleLabels.aboutButton,
                              AppConstants.ButtonTitleLabels.statsButton,
@@ -159,6 +163,8 @@ extension DetailInfoPokemonVC {
             button.titleLabel?.textAlignment = .center
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             button.tag = index
+            
+            button.accessibilityIdentifier = "\(title)Button"
             
             if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 14) {
                 button.titleLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)

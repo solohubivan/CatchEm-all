@@ -42,6 +42,7 @@ class MovesContainerView: UIView {
         titleLabel.setCustomFont(name: AppConstants.Fonts.latoSemibold, size: 18, textStyle: .title1)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
+        titleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.movesTitleLabel
         
         self.addSubview(titleLabel)
     }
@@ -51,6 +52,7 @@ class MovesContainerView: UIView {
         movesInfoTextView.isEditable = false
         movesInfoTextView.textAlignment = .justified
         movesInfoTextView.textColor = .gray
+        movesInfoTextView.accessibilityIdentifier = AppConstants.ObjectsIdentifier.movesInfoTextView
         
         if let customFont = UIFont(name: AppConstants.Fonts.latoRegular, size: 13) {
             movesInfoTextView.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)

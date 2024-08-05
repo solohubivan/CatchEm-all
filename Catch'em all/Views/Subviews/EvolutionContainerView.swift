@@ -53,6 +53,17 @@ class EvolutionContainerView: UIView {
         createParametersLabels(labelName: minLevelForNextEvolutionStageValueLabel, text: "", textColor: .gray)
         createParametersLabels(labelName: placeForNextEvolutionValueLabel, text: "", textColor: .gray)
         
+        currentEvolutionNameTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.currentEvolutionNameTitleLabel
+        nextEvolutionsNamesTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.nextEvolutionsNamesTitleLabel
+        triggerForNextEvolutionStageTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.triggerForNextEvolutionStageTitleLabel
+        minLevelForNextEvolutionStageTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.minLevelForNextEvolutionStageTitleLabel
+        placeForNextEvolutionTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.placeForNextEvolutionTitleLabel
+        currentEvolutionNameValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.currentEvolutionNameValueLabel
+        nextEvolutionsNamesValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.nextEvolutionsNamesValueLabel
+        triggerForNextEvolutionStageValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.triggerForNextEvolutionStageValueLabel
+        minLevelForNextEvolutionStageValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.minLevelForNextEvolutionStageValueLabel
+        placeForNextEvolutionValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.placeForNextEvolutionValueLabel
+        
         self.addSubview(currentEvolutionNameTitleLabel)
         self.addSubview(nextEvolutionsNamesTitleLabel)
         self.addSubview(triggerForNextEvolutionStageTitleLabel)

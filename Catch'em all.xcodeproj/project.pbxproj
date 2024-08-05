@@ -42,8 +42,27 @@
 		22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444922C085FAF00085AFA /* Lato-Light.ttf */; };
 		22BA54C42C2A34EA006D0966 /* AboutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */; };
 		22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2555A2C21E69700D9A6C2 /* CasheManager.swift */; };
+		22D043822C60E749005743C9 /* Catch_em_allTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D043812C60E749005743C9 /* Catch_em_allTests.swift */; };
+		22D0438F2C611C8D005743C9 /* Catch_em_allUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0438E2C611C8D005743C9 /* Catch_em_allUITests.swift */; };
 		22E50D142C2FE98700A3488B /* StatsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E50D132C2FE98700A3488B /* StatsContainerView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22D043832C60E749005743C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22B4445B2C084FE100085AFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22B444622C084FE100085AFA;
+			remoteInfo = "Catch'em all";
+		};
+		22D043922C611C8D005743C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22B4445B2C084FE100085AFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22B444622C084FE100085AFA;
+			remoteInfo = "Catch'em all";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		22021AD12C1302AB008D28F6 /* PresentPokemonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPokemonsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -83,11 +102,29 @@
 		22B444922C085FAF00085AFA /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutContainerView.swift; sourceTree = "<group>"; };
 		22C2555A2C21E69700D9A6C2 /* CasheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasheManager.swift; sourceTree = "<group>"; };
+		22D0437F2C60E749005743C9 /* Catch'em allTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catch'em allTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D043812C60E749005743C9 /* Catch_em_allTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch_em_allTests.swift; sourceTree = "<group>"; };
+		22D0438C2C611C8D005743C9 /* Catch'em allUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catch'em allUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D0438E2C611C8D005743C9 /* Catch_em_allUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch_em_allUITests.swift; sourceTree = "<group>"; };
 		22E50D132C2FE98700A3488B /* StatsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		22B444602C084FE100085AFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D0437C2C60E749005743C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D043892C611C8D005743C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -112,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				22B444652C084FE100085AFA /* Catch'em all */,
+				22D043802C60E749005743C9 /* Catch'em allTests */,
+				22D0438D2C611C8D005743C9 /* Catch'em allUITests */,
 				22B444642C084FE100085AFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				22B444632C084FE100085AFA /* Catch'em all.app */,
+				22D0437F2C60E749005743C9 /* Catch'em allTests.xctest */,
+				22D0438C2C611C8D005743C9 /* Catch'em allUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +278,22 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		22D043802C60E749005743C9 /* Catch'em allTests */ = {
+			isa = PBXGroup;
+			children = (
+				22D043812C60E749005743C9 /* Catch_em_allTests.swift */,
+			);
+			path = "Catch'em allTests";
+			sourceTree = "<group>";
+		};
+		22D0438D2C611C8D005743C9 /* Catch'em allUITests */ = {
+			isa = PBXGroup;
+			children = (
+				22D0438E2C611C8D005743C9 /* Catch_em_allUITests.swift */,
+			);
+			path = "Catch'em allUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,6 +314,42 @@
 			productReference = 22B444632C084FE100085AFA /* Catch'em all.app */;
 			productType = "com.apple.product-type.application";
 		};
+		22D0437E2C60E749005743C9 /* Catch'em allTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D043872C60E749005743C9 /* Build configuration list for PBXNativeTarget "Catch'em allTests" */;
+			buildPhases = (
+				22D0437B2C60E749005743C9 /* Sources */,
+				22D0437C2C60E749005743C9 /* Frameworks */,
+				22D0437D2C60E749005743C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22D043842C60E749005743C9 /* PBXTargetDependency */,
+			);
+			name = "Catch'em allTests";
+			productName = "Catch'em allTests";
+			productReference = 22D0437F2C60E749005743C9 /* Catch'em allTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		22D0438B2C611C8D005743C9 /* Catch'em allUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D043942C611C8D005743C9 /* Build configuration list for PBXNativeTarget "Catch'em allUITests" */;
+			buildPhases = (
+				22D043882C611C8D005743C9 /* Sources */,
+				22D043892C611C8D005743C9 /* Frameworks */,
+				22D0438A2C611C8D005743C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22D043932C611C8D005743C9 /* PBXTargetDependency */,
+			);
+			name = "Catch'em allUITests";
+			productName = "Catch'em allUITests";
+			productReference = 22D0438C2C611C8D005743C9 /* Catch'em allUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -269,6 +362,14 @@
 				TargetAttributes = {
 					22B444622C084FE100085AFA = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					22D0437E2C60E749005743C9 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 22B444622C084FE100085AFA;
+					};
+					22D0438B2C611C8D005743C9 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 22B444622C084FE100085AFA;
 					};
 				};
 			};
@@ -286,6 +387,8 @@
 			projectRoot = "";
 			targets = (
 				22B444622C084FE100085AFA /* Catch'em all */,
+				22D0437E2C60E749005743C9 /* Catch'em allTests */,
+				22D0438B2C611C8D005743C9 /* Catch'em allUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +405,20 @@
 				22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */,
 				22B444732C084FE200085AFA /* Base in Resources */,
 				22B4448B2C085F5C00085AFA /* Lato-Semibold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D0437D2C60E749005743C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D0438A2C611C8D005743C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +461,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22D0437B2C60E749005743C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D043822C60E749005743C9 /* Catch_em_allTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22D043882C611C8D005743C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D0438F2C611C8D005743C9 /* Catch_em_allUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22D043842C60E749005743C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22B444622C084FE100085AFA /* Catch'em all */;
+			targetProxy = 22D043832C60E749005743C9 /* PBXContainerItemProxy */;
+		};
+		22D043932C611C8D005743C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22B444622C084FE100085AFA /* Catch'em all */;
+			targetProxy = 22D043922C611C8D005743C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		22B444712C084FE200085AFA /* LaunchScreen.storyboard */ = {
@@ -531,6 +677,78 @@
 			};
 			name = Release;
 		};
+		22D043852C60E749005743C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Solohub.Catch-em-allTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catch'em all.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Catch'em all";
+			};
+			name = Debug;
+		};
+		22D043862C60E749005743C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Solohub.Catch-em-allTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catch'em all.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Catch'em all";
+			};
+			name = Release;
+		};
+		22D043952C611C8D005743C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Solohub.Catch-em-allUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Catch'em all";
+			};
+			name = Debug;
+		};
+		22D043962C611C8D005743C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D98645N8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Solohub.Catch-em-allUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Catch'em all";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -548,6 +766,24 @@
 			buildConfigurations = (
 				22B444782C084FE200085AFA /* Debug */,
 				22B444792C084FE200085AFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22D043872C60E749005743C9 /* Build configuration list for PBXNativeTarget "Catch'em allTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D043852C60E749005743C9 /* Debug */,
+				22D043862C60E749005743C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22D043942C611C8D005743C9 /* Build configuration list for PBXNativeTarget "Catch'em allUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D043952C611C8D005743C9 /* Debug */,
+				22D043962C611C8D005743C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

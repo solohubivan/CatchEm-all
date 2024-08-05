@@ -94,6 +94,19 @@ extension AboutContainerView {
         createParametersLabels(labelName: powerParameterValueLabel, text: "", textColor: .gray)
         createParametersLabels(labelName: damageParameterValueLabel, text: "", textColor: .gray)
         
+        heightParameterTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.heightParameterTitleLabel
+        weightParameterTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.weightParameterTitleLabel
+        powerParameterTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.powerParameterTitleLabel
+        attackParameterTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.attackParameterTitleLabel
+        damageParameterTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.damageParameterTitleLabel
+                
+        heightParameterValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.heightParameterValueLabel
+        weightParameterValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.weightParameterValueLabel
+        powerParameterValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.powerParameterValueLabel
+        attackParameterValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.attackParameterValueLabel
+        damageParameterValueLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.damageParameterValueLabel
+        generalInfoTextView.accessibilityIdentifier = AppConstants.ObjectsIdentifier.generalInfoTextView
+        
         self.addSubview(heightParameterTitleLabel)
         self.addSubview(weightParameterTitleLabel)
         self.addSubview(powerParameterTitleLabel)

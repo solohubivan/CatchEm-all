@@ -124,10 +124,11 @@ extension MainViewController {
     }
     
     private func setupMainTitleLabel() {
+        mainTitleLabel.accessibilityIdentifier = AppConstants.ObjectsIdentifier.mainTitleLabel
         mainTitleLabel.text = AppConstants.MainViewController.mainTitleText
         mainTitleLabel.setCustomFont(name: AppConstants.Fonts.latoBold, size: 24, textStyle: .title1)
         mainTitleLabel.textColor = UIColor.hex231F20
-        
+
         view.addSubview(mainTitleLabel)
     }
 
@@ -139,6 +140,7 @@ extension MainViewController {
         presentPokemonsCollectionView.register(PresentPokemonsCollectionViewCell.self, forCellWithReuseIdentifier: AppConstants.Identifiers.mainVCCellID)
         presentPokemonsCollectionView.layer.masksToBounds = true
         
+        presentPokemonsCollectionView.accessibilityIdentifier = AppConstants.ObjectsIdentifier.presentPokemonsCollectionView
         presentPokemonsCollectionView.overrideUserInterfaceStyle = .light
         presentPokemonsCollectionView.backgroundColor = .clear
         

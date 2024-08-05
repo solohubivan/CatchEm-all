@@ -66,4 +66,52 @@ enum AppConstants {
     enum MovesContainerView {
         static let titleLabelText: String = "There are available moves"
     }
+    
+    enum ObjectsIdentifier {
+        static let mainTitleLabel: String = "MainTitleLabel"
+        static let presentPokemonsCollectionView: String = "PresentPokemonsCollectionView"
+        static let goBackButton: String = "BackButton"
+        static let nameLabel: String = "HerosNameLabel"
+        static let pokemonImageView: String = "PokemonImageView"
+        static let pokemonsInfoModeButtonsStackView: String = "PokemonsInfoModeButtonsStackView"
+        
+        static let heightParameterTitleLabel: String = "HeightParameterTitleLabel"
+        static let weightParameterTitleLabel: String = "WeightParameterTitleLabel"
+        static let powerParameterTitleLabel: String = "PowerParameterTitleLabel"
+        static let attackParameterTitleLabel: String = "AttackParameterTitleLabel"
+        static let damageParameterTitleLabel: String = "DamageParameterTitleLabel"
+        static let heightParameterValueLabel: String = "HeightParameterValueLabel"
+        static let weightParameterValueLabel: String = "WeightParameterValueLabel"
+        static let powerParameterValueLabel: String = "PowerParameterValueLabel"
+        static let attackParameterValueLabel: String = "AttackParameterValueLabel"
+        static let damageParameterValueLabel: String = "DamageParameterValueLabel"
+        static let generalInfoTextView: String = "GeneralInfoTextView"
+        
+        static let pokemonHPTitleLabel: String = "PokemonHPTitleLabel"
+        static let pokemonAttackTitleLabel: String = "PokemonAttackTitleLabel"
+        static let pokemonSpecialAttackTitleLabel: String = "PokemonSpecialAttackTitleLabel"
+        static let pokemonDefenseTitleLabel: String = "PokemonDefenseTitleLabel"
+        static let pokemonSpecialDefenseTitleLabel: String = "PokemonSpecialDefenseTitleLabel"
+        static let pokemonSpeedTitleLabel: String = "PokemonSpeedTitleLabel"
+        static let pokemonHPValueLabel: String = "PokemonHPValueLabel"
+        static let pokemonAttackValueLabel: String = "PokemonAttackValueLabel"
+        static let pokemonSpecialAttackValueLabel: String = "PokemonSpecialAttackValueLabel"
+        static let pokemonDefenseValueLabel: String = "PokemonDefenseValueLabel"
+        static let pokemonSpecialDefenseValueLabel: String = "PokemonSpecialDefenseValueLabel"
+        static let pokemonSpeedValueLabel: String = "PokemonSpeedValueLabel"
+        
+        static let currentEvolutionNameTitleLabel: String = "CurrentEvolutionNameTitleLabel"
+        static let nextEvolutionsNamesTitleLabel: String = "NextEvolutionsNamesTitleLabel"
+        static let triggerForNextEvolutionStageTitleLabel: String = "TriggerForNextEvolutionStageTitleLabel"
+        static let minLevelForNextEvolutionStageTitleLabel: String = "MinLevelForNextEvolutionStageTitleLabel"
+        static let placeForNextEvolutionTitleLabel: String = "PlaceForNextEvolutionTitleLabel"
+        static let currentEvolutionNameValueLabel: String = "CurrentEvolutionNameValueLabel"
+        static let nextEvolutionsNamesValueLabel: String = "NextEvolutionsNamesValueLabel"
+        static let triggerForNextEvolutionStageValueLabel: String = "TriggerForNextEvolutionStageValueLabel"
+        static let minLevelForNextEvolutionStageValueLabel: String = "MinLevelForNextEvolutionStageValueLabel"
+        static let placeForNextEvolutionValueLabel: String = "PlaceForNextEvolutionValueLabel"
+        
+        static let movesTitleLabel: String = "MovesTitleLabel"
+        static let movesInfoTextView: String = "MovesInfoTextView"
+    }
 }

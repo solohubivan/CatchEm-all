@@ -17,6 +17,14 @@ class ApiDataManager {
     
     // MARK: - Public Methods
     
+    func getNextPageUrl() -> String {
+        return nextPageURL ?? ""
+    }
+    
+    func createPokemonDetailURL(for pokemon: Pokemon) -> URL? {
+        return URL(string: pokemon.url)
+    }
+    
     func getPokemonsDetailInfo() -> [PokemonInfo] {
         return availablePokemons.map {
             PokemonInfo(
@@ -102,7 +110,7 @@ class ApiDataManager {
                 .eraseToAnyPublisher()
         }
         
-        guard let url = URL(string: pokemon.url) else {
+        guard let url = createPokemonDetailURL(for: pokemon) else {
             return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
         }
         

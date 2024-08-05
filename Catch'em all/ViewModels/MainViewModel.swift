@@ -21,7 +21,7 @@ class MainViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    print("Error fetching data: \(error)")
+                    break
                 }
             }, receiveValue: { [weak self] in
                 self?.pokemons = self?.apiDataManager.getPokemonsDetailInfo() ?? []
