@@ -26,8 +26,8 @@ class ApiDataManager {
     }
     
     func createPokemonURL(for id: Int) -> String {
-          return "https://pokeapi.co/api/v2/pokemon/\(id)/"
-      }
+        return "https://pokeapi.co/api/v2/pokemon/\(id)/"
+    }
     
     func getPokemonsDetailInfo() -> [PokemonInfo] {
         return availablePokemons.map {
