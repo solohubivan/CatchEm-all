@@ -1,5 +1,5 @@
 //
-//  Catch_em_allTests.swift
+//  ApiDataManagerUnitTests.swift
 //  Catch'em allTests
 //
 //  Created by Ivan Solohub on 05.08.2024.
@@ -8,12 +8,12 @@
 import XCTest
 @testable import Catch_em_all
 
-final class ApiDataManagerTests: XCTestCase {
+final class ApiDataManagerUnitTests: XCTestCase {
     
     var apiDataManager: ApiDataManager?
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+
+    override func setUp() {
+        super.setUp()
         apiDataManager = ApiDataManager()
     }
     
@@ -22,7 +22,7 @@ final class ApiDataManagerTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testPokemonApiDataURL() {
+    func testGetNextPageUrlReturnsCorrectURL() {
         // Given
         let expectedURL = "https://pokeapi.co/api/v2/pokemon"
         // When
@@ -31,25 +31,25 @@ final class ApiDataManagerTests: XCTestCase {
         XCTAssertEqual(url, expectedURL)
     }
     
-    func testPokemonDetailURL() {
+    func testCreatePokemonDetailURLReturnsCorrectURL() {
         // Given
-        let pokemon = Pokemon(name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
+        let pokemon = Pokemon(name: "bulbasaur", url: apiDataManager?.createPokemonURL(for: 1) ?? "")
         // When
         let detailURL = apiDataManager?.createPokemonDetailURL(for: pokemon)
         let expectedURL = URL(string: "https://pokeapi.co/api/v2/pokemon/1/")
         // Then
         XCTAssertEqual(detailURL, expectedURL)
     }
-    
-    func testPokemonDetailURL2() {
-        let pokemon = Pokemon(name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/")
+        
+    func testCreatePokemonDetailURLReturnsCorrectURLForPikachu() {
+        let pokemon = Pokemon(name: "pikachu", url: apiDataManager?.createPokemonURL(for: 25) ?? "")
         let detailURL = apiDataManager?.createPokemonDetailURL(for: pokemon)
         let expectedURL = URL(string: "https://pokeapi.co/api/v2/pokemon/25/")
         XCTAssertEqual(detailURL, expectedURL)
     }
-    
-    func testPokemonDetailURLFailure() {
-        let pokemon = Pokemon(name: "charizard", url: "https://pokeapi.co/api/v2/pokemon/6/")
+        
+    func testCreatePokemonDetailURLReturnsIncorrectURLForCharizard() {
+        let pokemon = Pokemon(name: "charizard", url: apiDataManager?.createPokemonURL(for: 6) ?? "")
         let detailURL = apiDataManager?.createPokemonDetailURL(for: pokemon)
         let expectedURL = URL(string: "https://pokeapi.co/api/v2/pokemon/66/")
         XCTAssertNotEqual(detailURL, expectedURL)

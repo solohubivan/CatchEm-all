@@ -42,7 +42,7 @@
 		22B444932C085FAF00085AFA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22B444922C085FAF00085AFA /* Lato-Light.ttf */; };
 		22BA54C42C2A34EA006D0966 /* AboutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */; };
 		22C2555B2C21E69700D9A6C2 /* CasheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2555A2C21E69700D9A6C2 /* CasheManager.swift */; };
-		22D043822C60E749005743C9 /* Catch_em_allTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D043812C60E749005743C9 /* Catch_em_allTests.swift */; };
+		22D043822C60E749005743C9 /* ApiDataManagerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D043812C60E749005743C9 /* ApiDataManagerUnitTests.swift */; };
 		22D0438F2C611C8D005743C9 /* Catch_em_allUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0438E2C611C8D005743C9 /* Catch_em_allUITests.swift */; };
 		22E50D142C2FE98700A3488B /* StatsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E50D132C2FE98700A3488B /* StatsContainerView.swift */; };
 /* End PBXBuildFile section */
@@ -103,7 +103,7 @@
 		22BA54C32C2A34EA006D0966 /* AboutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutContainerView.swift; sourceTree = "<group>"; };
 		22C2555A2C21E69700D9A6C2 /* CasheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasheManager.swift; sourceTree = "<group>"; };
 		22D0437F2C60E749005743C9 /* Catch'em allTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catch'em allTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		22D043812C60E749005743C9 /* Catch_em_allTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch_em_allTests.swift; sourceTree = "<group>"; };
+		22D043812C60E749005743C9 /* ApiDataManagerUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDataManagerUnitTests.swift; sourceTree = "<group>"; };
 		22D0438C2C611C8D005743C9 /* Catch'em allUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catch'em allUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D0438E2C611C8D005743C9 /* Catch_em_allUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch_em_allUITests.swift; sourceTree = "<group>"; };
 		22E50D132C2FE98700A3488B /* StatsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsContainerView.swift; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 		22D043802C60E749005743C9 /* Catch'em allTests */ = {
 			isa = PBXGroup;
 			children = (
-				22D043812C60E749005743C9 /* Catch_em_allTests.swift */,
+				22D043812C60E749005743C9 /* ApiDataManagerUnitTests.swift */,
 			);
 			path = "Catch'em allTests";
 			sourceTree = "<group>";
@@ -465,7 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D043822C60E749005743C9 /* Catch_em_allTests.swift in Sources */,
+				22D043822C60E749005743C9 /* ApiDataManagerUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
